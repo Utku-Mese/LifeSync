@@ -22,6 +22,7 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
   }
 
   double waweCount = 0;
+  double waterCount = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,7 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
                       Expanded(
                         child: Column(
                           children: <Widget>[
-                            const Column(
+                            Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
@@ -68,12 +69,12 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: <Widget>[
                                     Padding(
-                                      padding:
-                                          EdgeInsets.only(left: 4, bottom: 3),
+                                      padding: const EdgeInsets.only(
+                                          left: 4, bottom: 3),
                                       child: Text(
-                                        '2115',
+                                        '${waterCount.toInt()}',
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontFamily: AppTheme.fontName,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 32,
@@ -81,7 +82,7 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
                                         ),
                                       ),
                                     ),
-                                    Padding(
+                                    const Padding(
                                       padding:
                                           EdgeInsets.only(left: 8, bottom: 8),
                                       child: Text(
@@ -98,7 +99,7 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
                                     ),
                                   ],
                                 ),
-                                Padding(
+                                const Padding(
                                   padding: EdgeInsets.only(
                                       left: 4, top: 2, bottom: 14),
                                   child: Text(
@@ -176,7 +177,7 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
                                           width: 24,
                                           height: 24,
                                           child: Image.asset(
-                                              'assets/fitness_app/bell.png'),
+                                              'assets/images/bell.png'),
                                         ),
                                         Flexible(
                                           child: Text(
@@ -211,6 +212,7 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
                                 if (waweCount < 100) {
                                   setState(() {
                                     waweCount += 5;
+                                    waterCount += 175;
                                   });
                                 }
                               },
@@ -244,6 +246,7 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
                                 if (waweCount > 0) {
                                   setState(() {
                                     waweCount -= 5;
+                                    waterCount -= 175;
                                   });
                                 }
                               },

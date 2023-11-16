@@ -29,8 +29,8 @@ class MealsListData {
       titleTxt: 'Öğle Yemeği',
       kacl: 602,
       meals: <String>['Salata,', 'Ekmek,', 'Portakal'],
-      startColor: '#738AE6',
-      endColor: '#5C5EDD',
+      startColor: '#10D8D0',
+      endColor: '#20E8B0',
     ),
     MealsListData(
       imagePath: 'assets/images/snack.png',

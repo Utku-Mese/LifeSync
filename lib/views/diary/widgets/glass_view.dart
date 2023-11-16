@@ -10,6 +10,7 @@ class GlassView extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return AnimatedBuilder(
       animation: animationController!,
       builder: (BuildContext context, Widget? child) {
@@ -29,6 +30,7 @@ class GlassView extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 16),
                         child: Container(
+                          width: size.width * 0.9,
                           decoration: BoxDecoration(
                             color: HexColor("#D7E0F9"),
                             borderRadius: const BorderRadius.only(
@@ -36,12 +38,12 @@ class GlassView extends StatelessWidget {
                                 bottomLeft: Radius.circular(8.0),
                                 bottomRight: Radius.circular(8.0),
                                 topRight: Radius.circular(8.0)),
-                            // boxShadow: <BoxShadow>[
-                            //   BoxShadow(
-                            //       color: AppTheme.grey.withOpacity(0.2),
-                            //       offset: Offset(1.1, 1.1),
-                            //       blurRadius: 10.0),
-                            // ],
+                            boxShadow: <BoxShadow>[
+                              BoxShadow(
+                                  color: AppTheme.grey.withOpacity(0.2),
+                                  offset: const Offset(1.1, 1.1),
+                                  blurRadius: 10.0),
+                            ],
                           ),
                           child: Column(
                             children: <Widget>[
@@ -49,7 +51,7 @@ class GlassView extends StatelessWidget {
                                 padding: const EdgeInsets.only(
                                     left: 68, bottom: 12, right: 16, top: 12),
                                 child: Text(
-                                  'Bir veya iki bardak su ile midenizi öğle yemeğine hazırlayın',
+                                  'Her öğünden önce bir bardak su içmeyi ihmal etmeyin.',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontFamily: AppTheme.fontName,
