@@ -76,7 +76,7 @@ class DietView extends StatelessWidget {
                                               padding: const EdgeInsets.only(
                                                   left: 4, bottom: 2),
                                               child: Text(
-                                                'Eaten',
+                                                'Alınan',
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   fontFamily: AppTheme.fontName,
@@ -171,7 +171,7 @@ class DietView extends StatelessWidget {
                                               padding: const EdgeInsets.only(
                                                   left: 4, bottom: 2),
                                               child: Text(
-                                                'Burned',
+                                                'Yakılan',
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   fontFamily: AppTheme.fontName,
@@ -282,7 +282,7 @@ class DietView extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            'Kcal left',
+                                            'Kcal kaldı',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontFamily: AppTheme.fontName,
@@ -344,7 +344,7 @@ class DietView extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 const Text(
-                                  'Carbs',
+                                  'Karbonhidrat',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontFamily: AppTheme.fontName,
@@ -389,7 +389,7 @@ class DietView extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 6),
                                   child: Text(
-                                    '12g left',
+                                    '12g Kaldı',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontFamily: AppTheme.fontName,
@@ -458,7 +458,7 @@ class DietView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 6),
                                       child: Text(
-                                        '30g left',
+                                        '30g Kaldı',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontFamily: AppTheme.fontName,
@@ -483,7 +483,7 @@ class DietView extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     const Text(
-                                      'Fat',
+                                      'Yağ',
                                       style: TextStyle(
                                         fontFamily: AppTheme.fontName,
                                         fontWeight: FontWeight.w500,
@@ -529,7 +529,7 @@ class DietView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 6),
                                       child: Text(
-                                        '10g left',
+                                        '10g Kaldı',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontFamily: AppTheme.fontName,

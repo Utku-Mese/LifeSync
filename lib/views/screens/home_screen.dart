@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:life_sync/utils/app_theme.dart';
+import 'package:life_sync/views/diary/screens/diary_screen.dart';
 
 import '../../utils/tab_icon_data.dart';
 import '../bottom_bar_view.dart';
@@ -29,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
     animationController = AnimationController(
         duration: const Duration(milliseconds: 600), vsync: this);
-    tabBody = MyDiaryScreen(animationController: animationController);
+    tabBody = DiaryScreen(animationController: animationController);
     super.initState();
   }
 
@@ -86,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 }
                 setState(() {
                   tabBody =
-                      MyDiaryScreen(animationController: animationController);
+                      DiaryScreen(animationController: animationController);
                 });
               });
             } else if (index == 1 || index == 3) {
@@ -95,8 +96,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   return;
                 }
                 setState(() {
-                  tabBody =
-                      TrainingScreen(animationController: animationController);
+                  /* tabBody =
+                      TrainingScreen(animationController: animationController); */ //! TODO: Add TrainingScreen
                 });
               });
             }

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../../utils/app_theme.dart';
 import '../../widgets/title_view.dart';
+import '../widgets/body_measurement_view.dart';
 import '../widgets/diet_view.dart';
+import '../widgets/glass_view.dart';
 import '../widgets/meals_list_view.dart';
+import '../widgets/water_view.dart';
 
 class DiaryScreen extends StatefulWidget {
   const DiaryScreen({Key? key, this.animationController}) : super(key: key);
@@ -58,8 +61,8 @@ class _DiaryScreenState extends State<DiaryScreen>
 
     listViews.add(
       TitleView(
-        titleTxt: 'Mediterranean diet',
-        subTxt: 'Details',
+        titleTxt: 'Besin Değerleri',
+        subTxt: 'Detaylar',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController!,
             curve: const Interval((1 / count) * 0, 1.0,
@@ -78,8 +81,8 @@ class _DiaryScreenState extends State<DiaryScreen>
     );
     listViews.add(
       TitleView(
-        titleTxt: 'Meals today',
-        subTxt: 'Customize',
+        titleTxt: 'Öğünler',
+        subTxt: 'Düzenle',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController!,
             curve: const Interval((1 / count) * 2, 1.0,
@@ -101,8 +104,8 @@ class _DiaryScreenState extends State<DiaryScreen>
 
     listViews.add(
       TitleView(
-        titleTxt: 'Body measurement',
-        subTxt: 'Today',
+        titleTxt: 'Vücut Ölçüleri',
+        subTxt: 'Bu gün',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController!,
             curve: const Interval((1 / count) * 4, 1.0,
@@ -122,8 +125,8 @@ class _DiaryScreenState extends State<DiaryScreen>
     );
     listViews.add(
       TitleView(
-        titleTxt: 'Water',
-        subTxt: 'Aqua SmartBottle',
+        titleTxt: 'Su',
+        subTxt: 'Detaylar',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController!,
             curve: const Interval((1 / count) * 6, 1.0,
@@ -246,7 +249,7 @@ class _DiaryScreenState extends State<DiaryScreen>
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  'My Diary',
+                                  'Günlüğüm',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontFamily: AppTheme.fontName,
