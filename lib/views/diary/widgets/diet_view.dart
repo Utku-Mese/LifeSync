@@ -94,12 +94,6 @@ class DietView extends StatelessWidget {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.end,
                                               children: <Widget>[
-                                                SizedBox(
-                                                  width: 28,
-                                                  height: 28,
-                                                  child: Image.asset(
-                                                      "assets/images/eaten.png"),
-                                                ),
                                                 Padding(
                                                   padding:
                                                       const EdgeInsets.only(
@@ -189,12 +183,6 @@ class DietView extends StatelessWidget {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.end,
                                               children: <Widget>[
-                                                SizedBox(
-                                                  width: 28,
-                                                  height: 28,
-                                                  child: Image.asset(
-                                                      "assets/images/burned.png"),
-                                                ),
                                                 Padding(
                                                   padding:
                                                       const EdgeInsets.only(
@@ -375,7 +363,7 @@ class DietView extends StatelessWidget {
                                             gradient: LinearGradient(colors: [
                                               HexColor('#87A0E5'),
                                               HexColor('#87A0E5')
-                                                  .withOpacity(0.5),
+                                                  .withOpacity(1),
                                             ]),
                                             borderRadius:
                                                 const BorderRadius.all(
@@ -443,7 +431,7 @@ class DietView extends StatelessWidget {
                                                 gradient:
                                                     LinearGradient(colors: [
                                                   HexColor('#F56E98')
-                                                      .withOpacity(0.1),
+                                                      .withOpacity(1),
                                                   HexColor('#F56E98'),
                                                 ]),
                                                 borderRadius:
@@ -514,7 +502,7 @@ class DietView extends StatelessWidget {
                                                 gradient:
                                                     LinearGradient(colors: [
                                                   HexColor('#F1B440')
-                                                      .withOpacity(0.1),
+                                                      .withOpacity(1),
                                                   HexColor('#F1B440'),
                                                 ]),
                                                 borderRadius:

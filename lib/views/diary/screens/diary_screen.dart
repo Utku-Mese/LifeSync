@@ -3,7 +3,7 @@ import '../../../utils/app_theme.dart';
 import '../../widgets/title_view.dart';
 import '../widgets/body_measurement_view.dart';
 import '../widgets/diet_view.dart';
-import '../widgets/glass_view.dart';
+import '../widgets/info_view.dart';
 import '../widgets/meals_list_view.dart';
 import '../widgets/water_view.dart';
 
@@ -82,7 +82,7 @@ class _DiaryScreenState extends State<DiaryScreen>
     listViews.add(
       TitleView(
         titleTxt: 'Öğünler',
-        subTxt: 'Düzenle',
+        subTxt: 'Detaylar',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController!,
             curve: const Interval((1 / count) * 2, 1.0,
@@ -105,7 +105,7 @@ class _DiaryScreenState extends State<DiaryScreen>
     listViews.add(
       TitleView(
         titleTxt: 'Vücut Ölçüleri',
-        subTxt: 'Bu gün',
+        subTxt: 'Düzenle',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController!,
             curve: const Interval((1 / count) * 4, 1.0,
@@ -146,7 +146,7 @@ class _DiaryScreenState extends State<DiaryScreen>
       ),
     );
     listViews.add(
-      GlassView(
+      InfoView(
           animation: Tween<double>(begin: 0.0, end: 1.0).animate(
               CurvedAnimation(
                   parent: widget.animationController!,
@@ -293,7 +293,7 @@ class _DiaryScreenState extends State<DiaryScreen>
                                     ),
                                   ),
                                   Text(
-                                    '15 May',
+                                    '8 Kas',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontFamily: AppTheme.fontName,

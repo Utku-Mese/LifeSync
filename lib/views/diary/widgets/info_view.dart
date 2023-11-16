@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import '../../../utils/app_theme.dart';
 import '../../../utils/hex_color.dart';
 
-class GlassView extends StatelessWidget {
+class InfoView extends StatelessWidget {
   final AnimationController? animationController;
   final Animation<double>? animation;
 
-  const GlassView({Key? key, this.animationController, this.animation})
+  const InfoView({Key? key, this.animationController, this.animation})
       : super(key: key);
   @override
   Widget build(BuildContext context) {

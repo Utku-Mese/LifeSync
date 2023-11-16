@@ -102,7 +102,7 @@ class MealsView extends StatelessWidget {
             transform: Matrix4.translationValues(
                 100 * (1.0 - animation!.value), 0.0, 0.0),
             child: SizedBox(
-              width: 130,
+              width: 160,
               child: Stack(
                 children: <Widget>[
                   Padding(

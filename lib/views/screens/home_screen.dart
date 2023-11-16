@@ -3,7 +3,7 @@ import 'package:life_sync/utils/app_theme.dart';
 import 'package:life_sync/views/diary/screens/diary_screen.dart';
 
 import '../../utils/tab_icon_data.dart';
-import '../bottom_bar_view.dart';
+import '../widgets/bottom_bar_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
