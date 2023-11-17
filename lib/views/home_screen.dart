@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:life_sync/utils/app_theme.dart';
-import 'package:life_sync/views/diary/screens/diary_screen.dart';
+import 'package:life_sync/views/diary/diary_screen.dart';
 
-import '../../utils/tab_icon_data.dart';
-import '../widgets/bottom_bar_view.dart';
+import '../utils/tab_icon_data.dart';
+import 'training/training_screen.dart';
+import 'widgets/bottom_bar_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -96,8 +97,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   return;
                 }
                 setState(() {
-                  /* tabBody =
-                      TrainingScreen(animationController: animationController); */ //! TODO: Add TrainingScreen
+                  tabBody =
+                      TrainingScreen(animationController: animationController);
                 });
               });
             }

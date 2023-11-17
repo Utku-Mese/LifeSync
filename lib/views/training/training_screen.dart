@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import '../../../utils/app_theme.dart';
-import '../../widgets/title_view.dart';
-import '../widgets/body_measurement_view.dart';
-import '../widgets/diet_view.dart';
-import '../widgets/info_view.dart';
-import '../widgets/meals_list_view.dart';
-import '../widgets/water_view.dart';
 
-class DiaryScreen extends StatefulWidget {
-  const DiaryScreen({Key? key, this.animationController}) : super(key: key);
+import '../../utils/app_theme.dart';
+import '../widgets/title_view.dart';
+import 'widgets/sport_list_view.dart';
+import 'widgets/traning_info_view.dart';
+import 'widgets/workout_view.dart';
+
+class TrainingScreen extends StatefulWidget {
+  const TrainingScreen({Key? key, this.animationController}) : super(key: key);
 
   final AnimationController? animationController;
   @override
-  _DiaryScreenState createState() => _DiaryScreenState();
+  _TrainingScreenState createState() => _TrainingScreenState();
 }
 
-class _DiaryScreenState extends State<DiaryScreen>
+class _TrainingScreenState extends State<TrainingScreen>
     with TickerProviderStateMixin {
   Animation<double>? topBarAnimation;
 
@@ -57,21 +56,11 @@ class _DiaryScreenState extends State<DiaryScreen>
   }
 
   void addAllListData() {
-    const int count = 9;
-
-    listViews.add(
-      InfoView(
-          animation: Tween<double>(begin: 0.0, end: 1.0).animate(
-              CurvedAnimation(
-                  parent: widget.animationController!,
-                  curve: const Interval((1 / count) * 8, 1.0,
-                      curve: Curves.fastOutSlowIn))),
-          animationController: widget.animationController!),
-    );
+    const int count = 5;
 
     listViews.add(
       TitleView(
-        titleTxt: 'Besin Değerleri',
+        titleTxt: 'Programın',
         subTxt: 'Detaylar',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController!,
@@ -80,19 +69,9 @@ class _DiaryScreenState extends State<DiaryScreen>
         animationController: widget.animationController!,
       ),
     );
+
     listViews.add(
-      DietView(
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController!,
-            curve: const Interval((1 / count) * 1, 1.0,
-                curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController!,
-      ),
-    );
-    listViews.add(
-      TitleView(
-        titleTxt: 'Öğünler',
-        subTxt: 'Detaylar',
+      WorkoutView(
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController!,
             curve: const Interval((1 / count) * 2, 1.0,
@@ -100,44 +79,20 @@ class _DiaryScreenState extends State<DiaryScreen>
         animationController: widget.animationController!,
       ),
     );
-
     listViews.add(
-      MealsListView(
-        mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
-            CurvedAnimation(
-                parent: widget.animationController!,
-                curve: const Interval((1 / count) * 3, 1.0,
-                    curve: Curves.fastOutSlowIn))),
-        mainScreenAnimationController: widget.animationController,
-      ),
-    );
-
-    listViews.add(
-      TitleView(
-        titleTxt: 'Su',
-        subTxt: 'Detaylar',
+      TraningInfoView(
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController!,
-            curve: const Interval((1 / count) * 6, 1.0,
+            curve: const Interval((1 / count) * 3, 1.0,
                 curve: Curves.fastOutSlowIn))),
         animationController: widget.animationController!,
       ),
     );
 
     listViews.add(
-      WaterView(
-        mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
-            CurvedAnimation(
-                parent: widget.animationController!,
-                curve: const Interval((1 / count) * 7, 1.0,
-                    curve: Curves.fastOutSlowIn))),
-        mainScreenAnimationController: widget.animationController!,
-      ),
-    );
-    listViews.add(
       TitleView(
-        titleTxt: 'Vücut Ölçüleri',
-        subTxt: 'Düzenle',
+        titleTxt: 'Antrenmanlar',
+        subTxt: 'Daha fazla',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController!,
             curve: const Interval((1 / count) * 4, 1.0,
@@ -147,12 +102,13 @@ class _DiaryScreenState extends State<DiaryScreen>
     );
 
     listViews.add(
-      BodyMeasurementView(
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController!,
-            curve: const Interval((1 / count) * 5, 1.0,
-                curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController!,
+      SportListView(
+        mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
+            CurvedAnimation(
+                parent: widget.animationController!,
+                curve: const Interval((1 / count) * 5, 1.0,
+                    curve: Curves.fastOutSlowIn))),
+        mainScreenAnimationController: widget.animationController!,
       ),
     );
   }
@@ -250,7 +206,7 @@ class _DiaryScreenState extends State<DiaryScreen>
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  'Günlüğüm',
+                                  'Antrenman',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontFamily: AppTheme.fontName,
