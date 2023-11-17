@@ -156,6 +156,7 @@ class _DiaryScreenState extends State<DiaryScreen>
         animationController: widget.animationController!,
       ),
     );
+    listViews.add(const SizedBox(height: 8));
   }
 
   Future<bool> getData() async {

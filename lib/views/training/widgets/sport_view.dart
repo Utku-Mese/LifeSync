@@ -55,7 +55,7 @@ class SportView extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      Text(
+                      /* Text(
                         name,
                         textAlign: TextAlign.left,
                         style: const TextStyle(
@@ -65,13 +65,12 @@ class SportView extends StatelessWidget {
                           letterSpacing: 0.27,
                           color: AppTheme.darkerText,
                         ),
-                      ),
+                      ), */
                       Padding(
                         padding:
-                            const EdgeInsets.only(top: 16, left: 16, right: 16),
-                        child: SizedBox(
-                          height: 150,
-                          child: Image.asset(imagepath!),
+                            const EdgeInsets.only(top: 0, left: 16, right: 16),
+                        child: Image.asset(
+                          imagepath!,
                         ),
                       ),
                     ],

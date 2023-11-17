@@ -60,7 +60,7 @@ class TraningInfoView extends StatelessWidget {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 30.0),
+                                padding: const EdgeInsets.only(left: 16.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
@@ -78,7 +78,7 @@ class TraningInfoView extends StatelessWidget {
                                             style: TextStyle(
                                               fontFamily: AppTheme.fontName,
                                               fontWeight: FontWeight.w500,
-                                              fontSize: 14,
+                                              fontSize: 18,
                                               letterSpacing: 0.0,
                                               color: AppTheme.nearlyDarkBlue,
                                             ),
@@ -99,7 +99,7 @@ class TraningInfoView extends StatelessWidget {
                                         style: TextStyle(
                                           fontFamily: AppTheme.fontName,
                                           fontWeight: FontWeight.w500,
-                                          fontSize: 10,
+                                          fontSize: 12,
                                           letterSpacing: 0.0,
                                           color: AppTheme.grey.withOpacity(0.5),
                                         ),
