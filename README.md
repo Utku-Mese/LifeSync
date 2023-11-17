@@ -1,2 +1,4 @@
 # LifeSync
+
 deneme
+#deneme ali
