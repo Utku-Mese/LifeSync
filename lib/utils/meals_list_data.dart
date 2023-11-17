@@ -27,7 +27,7 @@ class MealsListData {
     MealsListData(
       imagePath: 'assets/images/lunch.png',
       titleTxt: 'Öğle Yemeği',
-      kacl: 602,
+      kacl: 602, 
       meals: <String>['Gereken:', '800 kcal'],
       startColor: '#10D8D0',
       endColor: '#20E8B0',

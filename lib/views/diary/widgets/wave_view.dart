@@ -136,16 +136,18 @@ class _WaveViewState extends State<WaveView> with TickerProviderStateMixin {
                     Text(
                       widget.percentageValue.round().toString(),
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: AppTheme.fontName,
                         fontWeight: FontWeight.w500,
                         fontSize: 24,
                         letterSpacing: 0.0,
-                        color: AppTheme.white,
+                        color: widget.percentageValue > 35.0
+                            ? AppTheme.white
+                            : AppTheme.nearlyDarkBlue,
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 3.0),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 3.0),
                       child: Text(
                         '%',
                         textAlign: TextAlign.center,
@@ -154,7 +156,9 @@ class _WaveViewState extends State<WaveView> with TickerProviderStateMixin {
                           fontWeight: FontWeight.w500,
                           fontSize: 14,
                           letterSpacing: 0.0,
-                          color: AppTheme.white,
+                          color: widget.percentageValue > 35.0
+                              ? AppTheme.white
+                              : AppTheme.nearlyDarkBlue,
                         ),
                       ),
                     ),
