@@ -4,9 +4,10 @@ const config = {
   db: {
     host: "localhost",
     user: "root",
-    password: "Omer.2002*",
+    password: "Omer.2002",
     database: "lifesync",
   },
 };
 
 module.exports = config;
+

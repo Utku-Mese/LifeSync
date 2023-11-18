@@ -49,6 +49,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  expandable_fab_lite:
+    dependency: "direct main"
+    description:
+      name: expandable_fab_lite
+      sha256: "5d6ecabdb721f28a5340e23b2e28e554a5530f53b600d765a4b9ec38ebe12e2f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   fake_async:
     dependency: transitive
     description:
@@ -186,3 +194,4 @@ packages:
     version: "0.1.4-beta"
 sdks:
   dart: ">=3.1.0 <4.0.0"
+  flutter: ">=1.17.0"
