@@ -3,6 +3,19 @@ const router = express.Router();
 const db = require("../../db");
 
 /*
+===>TEST VERİSİ<==
+Hızlı test edebilmeniz için  expected .json file sample
+
+
+{
+    "IsApproved": "0",
+    "Type":"xxxxx",
+    "Name":"xxxxx",
+    "Calories":"11",
+    "Fat":"22.22",
+    "Protein":"22.22",
+    "Carbohydrate":"22.22"
+}
 
 ===> Display şekilleri <===
 
@@ -28,18 +41,13 @@ const db = require("../../db");
     }
     --------------------------------------------
   Bu Get metodu içeriği Daha iyi bir sonuç verecektir.
-
-
-
 */
 
-//! Query'ler kontrol edilmeli tekrar
 //GET : Hepsini getir
 router.get("/", async (req, res, next) => {
   try {
-    //! table ismi kontrol edilmeli
-    const result = await db.query("SELECT * FROM foodTable");
-    res.status(200).json(result);
+    const result = await db.query("SELECT * FROM foods");
+    res.status(200).json(result[0]);
   } catch (err) {
     console.log(err);
     res.status(404).json({
@@ -48,15 +56,12 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-//! localhost:port/foodRoute dizini içine gönderilir.
-//! Beklenen .json() formatında 'foodID' olması beklenir.
 //GET : Req'deki ID'yi getir
 router.get("/", async (req, res, next) => {
   try {
-    const id = req.body.foodID;
-    //! table ismi kontrol edilmeli
-    const result = await db.query("SELECT * FROM foodTable WHERE id = ?", [id]);
-    res.status(200).json(result);
+    const id = req.body.FoodID;
+    const result = await db.query("SELECT * FROM foods WHERE FoodID = ?", [id]);
+    res.status(200).json(result[0]);
   } catch (err) {
     console.log(err);
     res.status(404).json({
@@ -65,15 +70,13 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-//! localhost:port/foodRoute/'foodID' dizini içine gönderilir.
-//! Beklenen .json() formatında 'foodID' olması beklenmez.
 //GET : Dizindeki ID'yi getir.
-router.get("/:foodID", async (req, res, next) => {
+router.get("/:FoodID", async (req, res, next) => {
   try {
-    const id = req.params.foodID;
-    //! table ismi kontrol edilmeli
-    const result = await db.query("SELECT * FROM foodTable WHERE id = ?", [id]);
-    res.status(200).json(result);
+    const id = req.params.FoodID;
+
+    const result = await db.query("SELECT * FROM foods WHERE FoodID = ?", [id]);
+    res.status(200).json(result[0]);
   } catch (err) {
     console.log(err);
     res.status(404).json({
@@ -87,12 +90,21 @@ router.get("/:foodID", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     console.log(req.body);
-    //! case kontrolu ( büyük küçük harf) yapılmalı
-    const { name, calori, type, fat, carboHydrate, protein, isApproved } =
+
+    const { IsApproved, Type, Name, Calories, Fat, Protein, Carbohydrate } =
       req.body;
+
     const query =
-      "INSERT INTO  foodTable (name, calori, type, fat, carboHydrate, protein, isApproved) VALUES(?,?,?,?,?,?,?)";
-    const values = [name, calori, type, fat, carboHydrate, protein, isApproved];
+      "INSERT INTO  foods (IsApproved,Type, Name, Calories, Fat, Protein, Carbohydrate) VALUES(?,?,?,?,?,?,?)";
+    const values = [
+      IsApproved,
+      Type,
+      Name,
+      Calories,
+      Fat,
+      Protein,
+      Carbohydrate,
+    ];
     const nonNull = values.map((value) => (value !== undefined ? value : null));
 
     await db.execute(query, nonNull);
@@ -108,27 +120,32 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-//! localhost:port/foodRoute dizini içine gönderilir.
-//! Beklenen .json() formatında 'foodID' olması beklenir.
 //PATCH : ID gönderme ile
 router.patch("/", async (req, res, next) => {
   try {
-    const id = req.body.foodID;
-    const { name, calori, type, fat, carboHydrate, protein, isApproved } =
-      req.body;
-    //! 2 query de kullanılabilir.
-    const query1 = `UPDATE Food SET name = ${name},  calori = ${calori}, type = ${type}, fat = ${fat}, carboHydrate = ${carboHydrate}, protein = ${protein}, isApproved = ${isApproved} WHERE id =${id}`;
-    const query = `UPDATE Food SET name = ?,  calori = ?, type = ?, fat = ?, carboHydrate = ?, protein = ?, isApproved = ? WHERE id = ?`;
+    const {
+      IsApproved,
+      Type,
+      Name,
+      Calories,
+      Fat,
+      Protein,
+      Carbohydrate,
+      FoodID,
+    } = req.body;
+
+    const query =
+      "UPDATE foods SET IsApproved = ?, Type = ?, Name = ?, Calories = ?, Fat = ?, Protein = ?, Carbohydrate = ? WHERE FoodID = ?";
 
     const values = [
-      name,
-      calori,
-      type,
-      fat,
-      carboHydrate,
-      protein,
-      isApproved,
-      id,
+      IsApproved,
+      Type,
+      Name,
+      Calories,
+      Fat,
+      Protein,
+      Carbohydrate,
+      FoodID,
     ];
     const nonNull = values.map((value) => (value !== undefined ? value : null));
     await db.execute(query, nonNull);
@@ -145,27 +162,25 @@ router.patch("/", async (req, res, next) => {
   }
 });
 
-//! localhost:port/foodRoute/'foodID' dizini içine gönderilir.
-//! Beklenen .json() formatında 'foodID' olması beklenmez.
 //PATCH : ID dizini ile
-router.patch("/:foodID", async (req, res, next) => {
+router.patch("/:FoodID", async (req, res, next) => {
   try {
-    const id = req.params.foodID;
-    const { name, calori, type, fat, carboHydrate, protein, isApproved } =
+    const FoodID = req.params.FoodID;
+    const { IsApproved, Type, Name, Calories, Fat, Protein, Carbohydrate } =
       req.body;
-    //! 2 query de kullanılabilir.
-    const query1 = `UPDATE Food SET name = ${name},  calori = ${calori}, type = ${type}, fat = ${fat}, carboHydrate = ${carboHydrate}, protein = ${protein}, isApproved = ${isApproved} WHERE id =${id}`;
-    const query = `UPDATE Food SET name = ?,  calori = ?, type = ?, fat = ?, carboHydrate = ?, protein = ?, isApproved = ? WHERE id = ?`;
+
+    const query =
+      "UPDATE foods SET IsApproved = ?, Type = ?, Name = ?, Calories = ?, Fat = ?, Protein = ?, Carbohydrate = ? WHERE FoodID = ?";
 
     const values = [
-      name,
-      calori,
-      type,
-      fat,
-      carboHydrate,
-      protein,
-      isApproved,
-      id,
+      IsApproved,
+      Type,
+      Name,
+      Calories,
+      Fat,
+      Protein,
+      Carbohydrate,
+      FoodID,
     ];
     const nonNull = values.map((value) => (value !== undefined ? value : null));
     await db.execute(query, nonNull);
@@ -182,14 +197,12 @@ router.patch("/:foodID", async (req, res, next) => {
   }
 });
 
-//! localhost:port/foodRoute' dizini içine gönderilir.
-//! Beklenen .json() formatında 'foodID' olması beklenir.
 //DELETE : ID Gönderme ile
 router.delete("/", async (req, res, next) => {
   try {
-    const id = req.body.foodID;
+    const FoodID = req.body.FoodID;
 
-    await db.execute("DELETE FROM foodTable WHERE id =?", [id]);
+    await db.execute("DELETE FROM foods WHERE FoodID =?", [FoodID]);
 
     console.log("Başarıyla Silidi");
     res.status(200).json({
@@ -203,14 +216,12 @@ router.delete("/", async (req, res, next) => {
   }
 });
 
-//! localhost:port/foodRoute/'foodID' dizini içine gönderilir.
-//! Beklenen .json() formatında 'foodID' olması beklenmez.
 // DELETE : ID Dizini ile
-router.delete("/", async (req, res, next) => {
+router.delete("/:FoodID", async (req, res, next) => {
   try {
-    const id = req.body.foodID;
+    const FoodID = req.params.FoodID;
 
-    await db.execute("DELETE FROM foodTable WHERE id =?", [id]);
+    await db.execute("DELETE FROM foods WHERE FoodID =?", [FoodID]);
 
     console.log("Başarıyla Silidi");
     res.status(200).json({
@@ -224,12 +235,4 @@ router.delete("/", async (req, res, next) => {
   }
 });
 
-router.get("/", async (req, res, next) => {
-  try {
-  } catch (err) {
-    console.log(err);
-    res.status(404).json({
-      message: "Bir hata meydana geldi.",
-    });
-  }
-});
+module.exports = router;
