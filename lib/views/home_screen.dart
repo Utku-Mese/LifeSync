@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:life_sync/utils/app_theme.dart';
-import 'package:life_sync/views/diary/screens/diary_screen.dart';
+import 'package:life_sync/views/diary/diary_screen.dart';
 
-import '../../utils/tab_icon_data.dart';
-import '../widgets/bottom_bar_view.dart';
+import '../utils/tab_icon_data.dart';
+import 'training/training_screen.dart';
+import 'widgets/bottom_bar_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -80,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           tabIconsList: tabIconsList,
           addClick: () {},
           changeIndex: (int index) {
-            if (index == 0 || index == 2) {
+            if (index == 0) {
               animationController?.reverse().then<dynamic>((data) {
                 if (!mounted) {
                   return;
@@ -90,14 +91,37 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       DiaryScreen(animationController: animationController);
                 });
               });
-            } else if (index == 1 || index == 3) {
+            } else if (index == 1) {
               animationController?.reverse().then<dynamic>((data) {
                 if (!mounted) {
                   return;
                 }
                 setState(() {
-                  /* tabBody =
-                      TrainingScreen(animationController: animationController); */ //! TODO: Add TrainingScreen
+                  tabBody =
+                      TrainingScreen(animationController: animationController);
+                });
+              });
+            } else if (index == 2) {
+              animationController?.reverse().then<dynamic>((data) {
+                if (!mounted) {
+                  return;
+                }
+                setState(() {
+                  tabBody = const Center(
+                    child: Text(
+                        "Tarifler ve bülten üstten 2 tane tab  olucak wp gibi"),
+                  );
+                });
+              });
+            } else if (index == 3) {
+              animationController?.reverse().then<dynamic>((data) {
+                if (!mounted) {
+                  return;
+                }
+                setState(() {
+                  tabBody = const Center(
+                    child: Text("Profil bölümü"),
+                  );
                 });
               });
             }

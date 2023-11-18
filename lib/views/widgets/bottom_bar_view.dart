@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:expandable_fab_lite/expandable_fab_lite.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/app_theme.dart';
@@ -119,6 +120,34 @@ class _BottomBarViewState extends State<BottomBarView>
           },
         ),
         Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).padding.bottom + 20,
+          ),
+          child: ExpandableFab(
+            color: AppTheme.nearlyDarkBlue,
+            fabMargin: 8,
+            children: [
+              ActionButton(
+                color: Colors.white,
+                icon: const Icon(Icons.face_6_rounded,
+                    color: AppTheme.nearlyDarkBlue),
+                onPressed: () {},
+              ),
+              ActionButton(
+                color: Colors.white,
+                icon: const Icon(Icons.call, color: AppTheme.nearlyDarkBlue),
+                onPressed: () {},
+              ),
+              ActionButton(
+                color: Colors.white,
+                icon:
+                    const Icon(Icons.settings, color: AppTheme.nearlyDarkBlue),
+                onPressed: () {},
+              )
+            ],
+          ),
+        ),
+        /* Padding(
           padding:
               EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
           child: SizedBox(
@@ -178,7 +207,7 @@ class _BottomBarViewState extends State<BottomBarView>
               ),
             ),
           ),
-        ),
+        ), */
       ],
     );
   }
@@ -250,8 +279,8 @@ class _TabIconsState extends State<TabIcons> with TickerProviderStateMixin {
                   scale: Tween<double>(begin: 0.88, end: 1.0).animate(
                       CurvedAnimation(
                           parent: widget.tabIconData!.animationController!,
-                          curve:
-                              Interval(0.1, 1.0, curve: Curves.fastOutSlowIn))),
+                          curve: const Interval(0.1, 1.0,
+                              curve: Curves.fastOutSlowIn))),
                   child: Image.asset(widget.tabIconData!.isSelected
                       ? widget.tabIconData!.selectedImagePath
                       : widget.tabIconData!.imagePath),
@@ -265,12 +294,12 @@ class _TabIconsState extends State<TabIcons> with TickerProviderStateMixin {
                     scale: Tween<double>(begin: 0.0, end: 1.0).animate(
                         CurvedAnimation(
                             parent: widget.tabIconData!.animationController!,
-                            curve: Interval(0.2, 1.0,
+                            curve: const Interval(0.2, 1.0,
                                 curve: Curves.fastOutSlowIn))),
                     child: Container(
                       width: 8,
                       height: 8,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: AppTheme.nearlyDarkBlue,
                         shape: BoxShape.circle,
                       ),
@@ -286,12 +315,12 @@ class _TabIconsState extends State<TabIcons> with TickerProviderStateMixin {
                     scale: Tween<double>(begin: 0.0, end: 1.0).animate(
                         CurvedAnimation(
                             parent: widget.tabIconData!.animationController!,
-                            curve: Interval(0.5, 0.8,
+                            curve: const Interval(0.5, 0.8,
                                 curve: Curves.fastOutSlowIn))),
                     child: Container(
                       width: 4,
                       height: 4,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: AppTheme.nearlyDarkBlue,
                         shape: BoxShape.circle,
                       ),
@@ -307,12 +336,12 @@ class _TabIconsState extends State<TabIcons> with TickerProviderStateMixin {
                     scale: Tween<double>(begin: 0.0, end: 1.0).animate(
                         CurvedAnimation(
                             parent: widget.tabIconData!.animationController!,
-                            curve: Interval(0.5, 0.6,
+                            curve: const Interval(0.5, 0.6,
                                 curve: Curves.fastOutSlowIn))),
                     child: Container(
                       width: 6,
                       height: 6,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: AppTheme.nearlyDarkBlue,
                         shape: BoxShape.circle,
                       ),
