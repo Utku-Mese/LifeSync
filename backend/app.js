@@ -15,5 +15,5 @@ app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use("/foodRoutes", foodRoutes);
+app.use("/foods", foodRoutes);
 module.exports = app;
