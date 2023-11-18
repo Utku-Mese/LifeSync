@@ -2,9 +2,7 @@ import 'dart:math' as math;
 
 import 'package:expandable_fab_lite/expandable_fab_lite.dart';
 import 'package:flutter/material.dart';
-
 import '../../utils/app_theme.dart';
-import '../../utils/hex_color.dart';
 import '../../utils/tab_icon_data.dart';
 
 class BottomBarView extends StatefulWidget {

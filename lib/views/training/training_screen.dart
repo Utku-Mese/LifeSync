@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../utils/app_theme.dart';
 import '../../utils/hex_color.dart';
-import '../diary/widgets/diet_view.dart';
 import '../widgets/curve_painter.dart';
 import '../widgets/title_view.dart';
 import 'widgets/sport_list_view.dart';
