@@ -1,11 +1,7 @@
-const express = require('express');
-const app = express();
+const express = require("express");
 const port = 8000;
-
-app.get('/', (req, res) => {
-    res.send('Selam beyler!');
-});
+const app = require("./app");
 
 app.listen(port, () => {
-    console.log(`Listening at http://localhost:${port}`);
+  console.log(`Listening at http://localhost:${port}`);
 });
