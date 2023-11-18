@@ -48,7 +48,8 @@ class TraningInfoView extends StatelessWidget {
                             children: <Widget>[
                               ClipRRect(
                                 borderRadius: const BorderRadius.all(
-                                    Radius.circular(8.0)),
+                                  Radius.circular(8.0),
+                                ),
                                 child: SizedBox(
                                   height: 74,
                                   child: AspectRatio(
@@ -99,7 +100,7 @@ class TraningInfoView extends StatelessWidget {
                                         style: TextStyle(
                                           fontFamily: AppTheme.fontName,
                                           fontWeight: FontWeight.w500,
-                                          fontSize: 12,
+                                          fontSize: 13,
                                           letterSpacing: 0.0,
                                           color: AppTheme.grey.withOpacity(0.5),
                                         ),

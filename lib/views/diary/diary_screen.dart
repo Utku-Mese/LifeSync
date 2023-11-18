@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:life_sync/views/diary/widgets/task_view.dart';
 import '../../utils/app_theme.dart';
 import '../widgets/title_view.dart';
 import 'widgets/body_measurement_view.dart';
@@ -156,6 +157,29 @@ class _DiaryScreenState extends State<DiaryScreen>
         animationController: widget.animationController!,
       ),
     );
+
+    listViews.add(
+      TitleView(
+        titleTxt: "Görevler",
+        subTxt: "Tümünü Gör",
+        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: widget.animationController!,
+            curve: const Interval((1 / count) * 4, 1.0,
+                curve: Curves.fastOutSlowIn))),
+        animationController: widget.animationController!,
+      ),
+    );
+
+    listViews.add(
+      TaskView(
+        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: widget.animationController!,
+            curve: const Interval((1 / count) * 5, 1.0,
+                curve: Curves.fastOutSlowIn))),
+        animationController: widget.animationController!,
+      ),
+    );
+
     listViews.add(const SizedBox(height: 8));
   }
 

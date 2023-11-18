@@ -188,7 +188,7 @@ class DietView extends StatelessWidget {
                                                       const EdgeInsets.only(
                                                           left: 4, bottom: 3),
                                                   child: Text(
-                                                    '${(102 * animation!.value).toInt()}',
+                                                    '${(264 * animation!.value).toInt()}',
                                                     textAlign: TextAlign.center,
                                                     style: const TextStyle(
                                                       fontFamily:
