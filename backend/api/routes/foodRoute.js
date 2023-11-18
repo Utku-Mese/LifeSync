@@ -3,9 +3,6 @@ const router = express.Router();
 const db = require("../../db");
 
 /*
-
-
-
 ===>TEST VERİSİ<==
 Hızlı test edebilmeniz için  expected .json file sample
 
@@ -44,9 +41,6 @@ Hızlı test edebilmeniz için  expected .json file sample
     }
     --------------------------------------------
   Bu Get metodu içeriği Daha iyi bir sonuç verecektir.
-
-
-
 */
 
 //GET : Hepsini getir
