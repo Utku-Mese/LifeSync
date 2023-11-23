@@ -1,9 +1,124 @@
 # LifeSync
 
+- [Türkçe(TR)](#türkçe)
+- [English(EN)](#english)
+
+
+# Türkçe
+<br>
+
+## İçerik
+
+- [Genel Bakış](#genel-bakış)
+- [Ekran Görüntüleri](#uygulama-içi-ekran-görüntüleri)
+- [Özellikler](#özellikler)
+- [Başlangıç](#başlangıç)
+  - [Gereklilikler](#gereklilikler)
+  - [Kurulum](#kurulum)
+- [Lisans](#lisans)
+
+## Genel Bakış
+
+LifeSync, kullanıcıların günlük yaşantılarını düzenleyerek sağlıklı bir 
+yaşam sürmelerine katkıda bulunmayı amaçlamaktadır. Proje, 
+kullanıcıların beslenme, spor ve su tüketimi gibi önemli faktörleri takip 
+etmelerine olanak tanıyan çok platformlu bir sistemdir. Ayrıca, 
+kullanıcıları birbirleriyle etkileşime geçirerek motivasyonlarını artırmak 
+ve sağlıklı yaşam alışkanlıkları kazandırmak için çeşitli özellikleri 
+içermektedir. LifeSync, kullanıcıların günlük hedefleri belirlemelerine, 
+bu hedeflere ulaşmalarına ve birbirleriyle rekabet etmelerine olanak 
+tanıyan bir platform sunmaktadır. 
+
+<br>
+
+API varsayılan olarak 8000 numaralı bağlantı noktasında çalışır.
+
+API'ye http://localhost:8000/ adresinden erişebilirsiniz.
+
+Not: API, veritabanı tabloları eklenmeden çalışmaz.
+
+## Uygulama içi ekran görüntüleri
+
+devam ediyor...
+
+## Özellikler
+
+devam ediyor...
+
+## MVC Mimarisi
+
+Bu projede MVC (Model-View-Controller) mimarisi kullanılmıştır. Bu mimari sayesinde projenin geliştirilmesi, düzenlenmesi ve bakımı kolaylaştırılmıştır. Model, View ve Controller bileşenleri, uygulamayı yönetmek için sağlam ve bakımı kolay bir sistem sağlamak üzere uyumlu bir şekilde çalışmaktadır.
+
+## Başlangıç
+
+### Gereklilikler
+
+Başlamadan önce aşağıdaki gereksinimleri karşıladığınızdan emin olun:
+
+- Bilgisayarınızda Node.js, npm ve flutter yüklü olmalı.
+- Uygun tablolar ve konfigürasyona sahip MySQL veritabanınız olmalı.
+- Bu projeyi bilgisayarınıza kopyalamalısınız.
+
+### Kurulum
+
+Projeyi yüklemek ve çalıştırmak için şu adımları izleyin:
+
+1. "database" klasörüne git:
+
+   ```shell
+   cd LifeSync/backend
+
+2. Proje bağımlılıklarını yükleyin:
+
+    ```shell
+    npm install
+
+3. Veritabanı ayarlarını düzenle:
+
+* "config.js" dosyasını aç ve MySQL veritabanı bilgilerini düzenle.
+
+4. Sunucuyu başlat:
+
+    ```shell
+    node index.js
+
+    ```
+    ya da
+    ```shell
+    npm start
+    
+5. Proje dizinine git:
+
+    ```shell
+    cd ..
+
+6. "flutter pub get" komutunu çalıştırarak paketleri yükle:
+
+    ```shell
+    flutter pub get
+
+7. Uygulamayı başlat:
+
+    ```shell
+    flutter run
+
+## Lisans
+
+Bu proje [MIT Lisansı](/LICENSE) kapsamında lisanslanmıştır.
+
+
+<br>
+<hr>
+<hr>
+<br>
+
+# English
+<br>
 ## Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
+- [In App Screenshots](#in-app-screenshots)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
@@ -89,6 +204,5 @@ To install and run the project locally, follow these steps:
 ## License
 
 This project is licensed under the [MIT License](/LICENSE).
-
 
 
