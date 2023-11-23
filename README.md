@@ -23,10 +23,11 @@ Note: API does not work without adding database tables.
 
 ## In App Screenshots
 
-
+progressing...
 
 ## Features
 
+progressing...
 
 ## MVC Architecture
 
