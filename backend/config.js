@@ -4,7 +4,7 @@ const config = {
   db: {
     host: "localhost",
     user: "root",
-    password: "Omer.2002",
+    password: "%HQznV8*",
     database: "lifesync",
   },
 };
