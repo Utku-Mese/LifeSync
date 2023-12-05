@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:life_sync/utils/app_theme.dart';
 import 'package:life_sync/views/diary/diary_screen.dart';
+import 'package:life_sync/views/profile/profile_screen.dart';
 
 import '../utils/tab_icon_data.dart';
 import 'training/training_screen.dart';
@@ -119,8 +120,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   return;
                 }
                 setState(() {
-                  tabBody = const Center(
-                    child: Text("Profil bölümü"),
+                  tabBody = ProfileScreen(
+                    animationController: animationController,
                   );
                 });
               });
