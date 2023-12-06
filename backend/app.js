@@ -5,7 +5,8 @@ const bodyParser = require("body-parser");
 
 // router bağlantıları
 const foodRoutes = require("./api/routes/foodRoute");
-const sportsRoutes = require(".//api/routes/sportsRoute");
+const sportsRoutes = require("./api/routes/sportsRoute");
+const newsRoutes = require("./api/routes/newsRoute")
 
 // Örnek
 // const xxRoutes = require("./api/routes/xx.js");
@@ -18,4 +19,5 @@ app.use(bodyParser.json());
 
 app.use("/foods", foodRoutes);
 app.use("/sports", sportsRoutes);
+app.use("/news",newsRoutes);
 module.exports = app;
