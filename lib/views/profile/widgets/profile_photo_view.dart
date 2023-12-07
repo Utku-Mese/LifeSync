@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import '../../../utils/app_theme.dart';
 
 class ProfilePhotoView extends StatelessWidget {
-  ProfilePhotoView({
+  const ProfilePhotoView({
     super.key,
     this.animationController,
   });
 
-  AnimationController? animationController;
+  final AnimationController? animationController;
 
   @override
   Widget build(BuildContext context) {

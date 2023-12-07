@@ -4,9 +4,9 @@ import 'package:life_sync/views/profile/widgets/profile_photo_view.dart';
 import '../../../utils/app_theme.dart';
 
 class ProfileCardView extends StatelessWidget {
-  ProfileCardView({super.key, this.animationController});
+  const ProfileCardView({super.key, this.animationController});
 
-  AnimationController? animationController;
+  final AnimationController? animationController;
 
   @override
   Widget build(BuildContext context) {
