@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const db = require("../../db");
 
-
 /*
 ===>TEST VERİSİ<==
 Hızlı test edebilmeniz için  expected .json file sample
@@ -77,6 +76,38 @@ router.get("/:FoodID", async (req, res, next) => {
     const id = req.params.FoodID;
 
     const result = await db.query("SELECT * FROM foods WHERE FoodID = ?", [id]);
+    res.status(200).json(result[0]);
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({
+      message: "Bir hata meydana geldi.",
+    });
+  }
+});
+router.get("/:IsApproved", async (req, res, next) => {
+  try {
+    if (req.params.IsApproved === "IsApproved") {
+      const result = await db.query(
+        "SELECT * FROM foods WHERE IsApproved = true"
+      );
+      res.status(200).json(result[0]);
+    } else if (req.params.IsApproved === "IsNotApproved") {
+      const result = await db.query(
+        "SELECT * FROM foods WHERE IsApproved = false"
+      );
+      res.status(200).json(result[0]);
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({
+      message: "Bir hata meydana geldi.",
+    });
+  }
+});
+router.get("/:Type", async (req, res, next) => {
+  try {
+    const Type = req.params.Type;
+    const result = await db.query(`SELECT * FROM foods WHERE Type = ${Type}`);
     res.status(200).json(result[0]);
   } catch (err) {
     console.log(err);
