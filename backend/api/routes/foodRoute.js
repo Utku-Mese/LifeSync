@@ -84,6 +84,38 @@ router.get("/:FoodID", async (req, res, next) => {
     });
   }
 });
+router.get("/:IsApproved", async (req, res, next) => {
+  try {
+    if (req.params.IsApproved === "IsApproved") {
+      const result = await db.query(
+        "SELECT * FROM foods WHERE IsApproved = true"
+      );
+      res.status(200).json(result[0]);
+    } else if (req.params.IsApproved === "IsNotApproved") {
+      const result = await db.query(
+        "SELECT * FROM foods WHERE IsApproved = false"
+      );
+      res.status(200).json(result[0]);
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({
+      message: "Bir hata meydana geldi.",
+    });
+  }
+});
+router.get("/:Type", async (req, res, next) => {
+  try {
+    const Type = req.params.Type;
+    const result = await db.query(`SELECT * FROM foods WHERE Type = ${Type}`);
+    res.status(200).json(result[0]);
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({
+      message: "Bir hata meydana geldi.",
+    });
+  }
+});
 
 //ID self-created
 //POST : Tek bir yemek
