@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:life_sync/utils/app_theme.dart';
+import 'package:life_sync/views/authentication/login_screen.dart';
 import 'package:life_sync/views/home_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -32,11 +33,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Life Sync',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppTheme.nearlyDarkBlue),
         textTheme: AppTheme.textTheme,
         useMaterial3: false,
       ),
-      home: const HomeScreen(),
+      home: const LoginScreen(),
     );
   }
 }
