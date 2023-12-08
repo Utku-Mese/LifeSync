@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:life_sync/utils/app_theme.dart';
 import 'package:life_sync/views/authentication/login_screen.dart';
-import 'package:life_sync/views/home_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 void main() async {

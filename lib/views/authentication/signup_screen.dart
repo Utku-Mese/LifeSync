@@ -14,40 +14,52 @@ class SignupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: const EdgeInsets.only(top: 100.0),
+        padding: const EdgeInsets.only(top: 60.0),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 54.0),
+            Image.asset(
+              'assets/images/signup.png',
+              height: 200.0,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 12.0),
               child: Text(
                 'Aramıza katılın',
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
               child: MyTextField(
                 emailController: emailController,
                 text: 'Email',
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
               child: MyTextField(
                 emailController: passwordController,
                 text: 'Şifre',
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
               child: MyTextField(
                 emailController: confirmPasswordController,
                 text: 'Şifre Tekrar',
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
               child: ElevatedButton(
                 onPressed: () {},
                 style: ButtonStyle(
@@ -74,7 +86,6 @@ class SignupScreen extends StatelessWidget {
               indent: 16.0,
               endIndent: 16.0,
               thickness: 1.0,
-              height: 50.0,
             ),
             const Padding(
               padding: EdgeInsets.all(16.0),

@@ -14,25 +14,23 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 100.0, bottom: 32.0),
             child: Image.asset('assets/images/login.png', height: 200.0),
           ),
-          /* const Padding(
-            padding: EdgeInsets.only(bottom: 12.0, left: 16.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Hesabınıza giriş yapın',
-                style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.w500,
-                ),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 12.0),
+            child: Text(
+              'Hesabınıza giriş yapın',
+              style: TextStyle(
+                fontSize: 22.0,
+                fontWeight: FontWeight.w500,
               ),
             ),
-          ), */
+          ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: MyTextField(
