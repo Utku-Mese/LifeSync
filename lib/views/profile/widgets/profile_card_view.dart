@@ -10,7 +10,11 @@ class ProfileCardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ScaleTransition(
+      alignment: Alignment.center,
+      scale: CurvedAnimation(
+          parent: animationController!, curve: Curves.fastOutSlowIn),
+      child: Container(
       padding: const EdgeInsets.only(bottom: 16.0),
       margin: const EdgeInsets.symmetric(horizontal: 16.0),
       decoration: BoxDecoration(
@@ -56,6 +60,7 @@ class ProfileCardView extends StatelessWidget {
           ],
         ),
       ),
+    ),
     );
   }
 }
