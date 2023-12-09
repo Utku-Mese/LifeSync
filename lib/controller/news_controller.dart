@@ -9,15 +9,32 @@ class NewsController{
         return parsed.map<News>((json)=> News.fromJson(json)).toList();
     }
 
+    //Get_all
     Future<List<News>> fetchNews() async{
         final response = await http.get(Uri.parse('http://192.168.1.34:8000/api/news'));
         if (response.statusCode ==200 ){
             final news = parseNews(response.body);
             return news;
         }else {
-            thros Exception('API request failed: ${response.statusCode}');
+            throw Exception('API request failed: ${response.statusCode}');
         }
     }
+
+
+    Future<List<News>> fetchNewsByDate() async {
+    try {
+      final response = await http.get(Uri.parse('http://192.168.1.34:8000/api/news/date'));
+      
+      if (response.statusCode == 200) {
+        final news = parseNews(response.body);
+        return news;
+      } else {
+        throw Exception('API request failed: ${response.statusCode}');
+      }
+    } catch (error) {
+      throw Exception('Error: $error');
+    }
+  }
 
 
 }
