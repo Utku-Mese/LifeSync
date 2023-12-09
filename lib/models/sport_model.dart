@@ -1,4 +1,3 @@
-
 class Sport {
   String? name;
   String? type;
@@ -17,10 +16,10 @@ class Sport {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['type'] = this.type;
-    data['calories'] = this.calories;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['type'] = type;
+    data['calories'] = calories;
     return data;
   }
 }

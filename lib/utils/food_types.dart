@@ -1,4 +1,1 @@
-const foodTypes = {
-    cannedFruit
-    
-}
+const foodTypes = {};

@@ -15,7 +15,6 @@ class FoodController {
         await http.get(Uri.parse('http://192.168.1.34:8000/api/foods'));
 
     if (response.statusCode == 200) {
-      
       final foods = parseFoods(response.body);
       return foods;
     } else {
@@ -23,16 +22,13 @@ class FoodController {
     }
   }
 
-
   Future<List<Food>> fetchFoodsByType(String type) async {
-    
     final response =
         await http.get(Uri.parse('http://192.168.1.34:8000/api/foods/$type'));
 
     if (response.statusCode == 200) {
-      
-      final foodByType =
-          foods.where((Food) => foods.Type == type).toList();
+      final foods = parseFoods(response.body);
+      final foodByType = foods.where((Food) => Food.type == type).toList();
       return foodByType;
     } else {
       throw Exception('API request failed: ${response.statusCode}');
@@ -56,8 +52,9 @@ class FoodController {
       throw Exception('API request failed: ${response.statusCode}');
     }
   }
-  getCalories(Food food,double porsiyon){
-    return food.calories * (porsiyon/100.0);
-  }
 
+  getCalories(Food food, double porsiyon) {
+    double calories = double.parse(food.calories ?? '0.0');
+    return calories * (porsiyon / 100);
+  }
 }
