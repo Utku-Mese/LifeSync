@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:life_sync/views/profile/widgets/profile_card_view.dart';
 
 import '../../utils/app_theme.dart';
-import '../widgets/title_view.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key, this.animationController});
@@ -53,72 +53,9 @@ class _ProfileScreenState extends State<ProfileScreen>
   }
 
   void addAllListData() {
-    const int count = 5;
-
-    listViews.add(
-      Container(
-        margin: const EdgeInsets.all(50.0),
-        height: 200,
-        decoration: BoxDecoration(
-          color: Colors.transparent,
-          shape: BoxShape.circle,
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              color: AppTheme.nearlyBlue.withOpacity(0.5),
-              offset: const Offset(2, 2),
-              blurRadius: 40.0,
-              spreadRadius: 20.0,
-            ),
-          ],
-        ),
-        child: Container(
-          margin: const EdgeInsets.all(25.0),
-          height: 100,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                color: AppTheme.nearlyDarkBlue.withOpacity(0.5),
-                offset: const Offset(1, 1),
-                blurRadius: 30.0,
-                spreadRadius: 10.0,
-              ),
-            ],
-          ),
-          child: Container(
-            margin: const EdgeInsets.all(8.0),
-            child: const CircleAvatar(
-              child: Icon(
-                Icons.person,
-                color: Colors.white,
-                size: 50,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-    listViews.add(
-      Center(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
-          decoration: BoxDecoration(
-            color: AppTheme.nearlyDarkBlue.withOpacity(0.5),
-            borderRadius: const BorderRadius.all(Radius.circular(20.0)),
-          ),
-          child: const Text(
-            'Kullanıcı Adı',
-            style: TextStyle(
-              fontFamily: 'Roboto',
-              fontSize: 20,
-              color: AppTheme.white,
-              fontWeight: FontWeight.w700,
-            ),
-            textAlign: TextAlign.left,
-          ),
-        ),
-      ),
-    );
+    listViews.add(ProfileCardView(
+      animationController: widget.animationController,
+    ));
   }
 
   Future<bool> getData() async {
@@ -134,6 +71,7 @@ class _ProfileScreenState extends State<ProfileScreen>
         backgroundColor: Colors.transparent,
         body: Stack(
           children: <Widget>[
+            getAppBarUI(),
             getMainListViewUI(),
             SizedBox(
               height: MediaQuery.of(context).padding.bottom,
@@ -168,6 +106,65 @@ class _ProfileScreenState extends State<ProfileScreen>
           );
         }
       },
+    );
+  }
+
+  Widget getAppBarUI() {
+    return Column(
+      children: <Widget>[
+        AnimatedBuilder(
+          animation: widget.animationController!,
+          builder: (BuildContext context, Widget? child) {
+            return FadeTransition(
+              opacity: topBarAnimation!,
+              child: Transform(
+                transform: Matrix4.translationValues(
+                    0.0, 30 * (1.0 - topBarAnimation!.value), 0.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppTheme.white.withOpacity(topBarOpacity),
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(32.0),
+                    ),
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                          color: AppTheme.grey.withOpacity(0.4 * topBarOpacity),
+                          offset: const Offset(1.1, 1.1),
+                          blurRadius: 10.0),
+                    ],
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: MediaQuery.of(context).padding.top,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 16,
+                            right: 16,
+                            top: 16 - 8.0 * topBarOpacity,
+                            bottom: 12 - 8.0 * topBarOpacity),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.more_horiz_sharp,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        )
+      ],
     );
   }
 }
