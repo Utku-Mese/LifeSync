@@ -37,6 +37,8 @@ class SignupScreen extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
               child: MyTextField(
+                keyboardType: TextInputType.emailAddress,
+                obscureText: false,
                 emailController: emailController,
                 text: 'Email',
               ),
@@ -45,6 +47,8 @@ class SignupScreen extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
               child: MyTextField(
+                keyboardType: TextInputType.visiblePassword,
+                obscureText: true,
                 emailController: passwordController,
                 text: 'Şifre',
               ),
@@ -53,6 +57,8 @@ class SignupScreen extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
               child: MyTextField(
+                keyboardType: TextInputType.visiblePassword,
+                obscureText: true,
                 emailController: confirmPasswordController,
                 text: 'Şifre Tekrar',
               ),

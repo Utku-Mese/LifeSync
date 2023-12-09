@@ -18,7 +18,7 @@ class LoginScreen extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 100.0, bottom: 32.0),
+            padding: const EdgeInsets.only(top: 90.0, bottom: 32.0),
             child: Image.asset('assets/images/login.png', height: 200.0),
           ),
           const Padding(
@@ -34,6 +34,8 @@ class LoginScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: MyTextField(
+              keyboardType: TextInputType.emailAddress,
+              obscureText: false,
               emailController: emailController,
               text: 'Email',
             ),
@@ -41,6 +43,8 @@ class LoginScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: MyTextField(
+              keyboardType: TextInputType.visiblePassword,
+              obscureText: true,
               emailController: passwordController,
               text: 'Şifre',
             ),

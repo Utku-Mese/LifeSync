@@ -37,6 +37,7 @@ dependencies:
   expandable_fab_lite: ^0.0.2
   http: ^1.1.0
   material: ^1.0.0+2
+  firebase_core: ^2.24.2
 
 dev_dependencies:
   flutter_test:
