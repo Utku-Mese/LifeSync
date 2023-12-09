@@ -1,3 +1,4 @@
 const foodTypes = {
+    cannedFruit
     
 }

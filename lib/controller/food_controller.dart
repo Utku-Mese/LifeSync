@@ -56,5 +56,8 @@ class FoodController {
       throw Exception('API request failed: ${response.statusCode}');
     }
   }
+  getCalories(Food food,double porsiyon){
+    return food.calories * (porsiyon/100.0);
+  }
 
 }
