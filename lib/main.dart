@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:life_sync/utils/app_theme.dart';
 import 'package:life_sync/views/authentication/login_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'firebase_options.dart';
+import 'services/firebase_options.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
