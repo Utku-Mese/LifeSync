@@ -1,11 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:life_sync/controller/auth_controller.dart';
 import 'package:life_sync/views/profile/widgets/profile_card_view.dart';
 
 import '../../utils/app_theme.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key, this.animationController});
+  const ProfileScreen(
+      {super.key, this.animationController, required this.user});
 
+  final User user;
   final AnimationController? animationController;
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -14,6 +18,8 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen>
     with TickerProviderStateMixin {
   Animation<double>? topBarAnimation;
+
+  AuthController authController = AuthController();
 
   List<Widget> listViews = <Widget>[];
   final ScrollController scrollController = ScrollController();
@@ -53,9 +59,24 @@ class _ProfileScreenState extends State<ProfileScreen>
   }
 
   void addAllListData() {
-    listViews.add(ProfileCardView(
-      animationController: widget.animationController,
-    ));
+    listViews.add(
+      ProfileCardView(
+        animationController: widget.animationController,
+        name: widget.user.email!,
+      ),
+    );
+
+    listViews.add(
+      Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ElevatedButton(
+          onPressed: () {
+            authController.signOut();
+          },
+          child: const Text('Çıkış Yap'),
+        ),
+      ),
+    );
   }
 
   Future<bool> getData() async {

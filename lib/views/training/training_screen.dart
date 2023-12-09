@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/app_theme.dart';
@@ -8,8 +9,10 @@ import 'widgets/traning_info_view.dart';
 import 'widgets/workout_view.dart';
 
 class TrainingScreen extends StatefulWidget {
-  const TrainingScreen({Key? key, this.animationController}) : super(key: key);
+  const TrainingScreen({Key? key, this.animationController, required this.user})
+      : super(key: key);
 
+  final User user;
   final AnimationController? animationController;
   @override
   _TrainingScreenState createState() => _TrainingScreenState();

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:life_sync/utils/app_theme.dart';
 import 'package:life_sync/views/diary/diary_screen.dart';
@@ -32,7 +33,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
     animationController = AnimationController(
         duration: const Duration(milliseconds: 600), vsync: this);
-    tabBody = DiaryScreen(animationController: animationController);
+    tabBody = DiaryScreen(
+      animationController: animationController,
+      user: FirebaseAuth.instance.currentUser!,
+    );
     super.initState();
   }
 
@@ -91,8 +95,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   return;
                 }
                 setState(() {
-                  tabBody =
-                      DiaryScreen(animationController: animationController);
+                  tabBody = DiaryScreen(
+                    animationController: animationController,
+                    user: FirebaseAuth.instance.currentUser!,
+                  );
                 });
               });
             } else if (index == 1) {
@@ -102,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 }
                 setState(() {
                   tabBody =
-                      TrainingScreen(animationController: animationController);
+                      TrainingScreen(animationController: animationController, user: FirebaseAuth.instance.currentUser!,);
                 });
               });
             } else if (index == 2) {
@@ -125,6 +131,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 setState(() {
                   tabBody = ProfileScreen(
                     animationController: animationController,
+                    user: FirebaseAuth.instance.currentUser!,
                   );
                 });
               });

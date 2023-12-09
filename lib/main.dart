@@ -1,13 +1,17 @@
 import 'dart:io';
-
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:life_sync/utils/app_theme.dart';
 import 'package:life_sync/views/authentication/login_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'firebase_options.dart';
 
-void main() async {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown
@@ -29,6 +33,8 @@ class MyApp extends StatelessWidget {
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
     return MaterialApp(
+      /* scaffoldMessengerKey:
+          ShowSnackBar.messengerKey, // for error messages in auth */
       debugShowCheckedModeBanner: false,
       title: 'Life Sync',
       theme: ThemeData(

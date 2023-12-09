@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:life_sync/controller/auth_controller.dart';
 import 'package:life_sync/views/authentication/login_screen.dart';
 import 'package:life_sync/views/authentication/widgets/my_text_field.dart';
 
@@ -7,6 +8,7 @@ import 'widgets/social_auth_card.dart';
 TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
 TextEditingController confirmPasswordController = TextEditingController();
+AuthController authController = AuthController();
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
@@ -67,7 +69,36 @@ class SignupScreen extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (passwordController.text ==
+                      confirmPasswordController.text) {
+                    authController.createUserWithEmailAndPassword(
+                      emailController.text,
+                      passwordController.text,
+                    );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    );
+                  } else {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: const Text('Hata'),
+                        content: const Text('Şifreler eşleşmiyor!'),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text('Tamam'))
+                        ],
+                      ),
+                    );
+                  }
+                },
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
@@ -88,10 +119,27 @@ class SignupScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const Divider(
-              indent: 16.0,
-              endIndent: 16.0,
-              thickness: 1.0,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  child: const Divider(
+                    indent: 16.0,
+                    endIndent: 16.0,
+                    thickness: 1.0,
+                  ),
+                ),
+                const Text('veya'),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  child: const Divider(
+                    indent: 16.0,
+                    endIndent: 16.0,
+                    thickness: 1.0,
+                  ),
+                ),
+              ],
             ),
             const Padding(
               padding: EdgeInsets.all(16.0),

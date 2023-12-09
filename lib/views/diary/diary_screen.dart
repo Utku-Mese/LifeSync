@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:life_sync/views/diary/widgets/task_view.dart';
 import '../../utils/app_theme.dart';
@@ -9,9 +10,11 @@ import 'widgets/meals_list_view.dart';
 import 'widgets/water_view.dart';
 
 class DiaryScreen extends StatefulWidget {
-  const DiaryScreen({Key? key, this.animationController}) : super(key: key);
+  const DiaryScreen({Key? key, this.animationController, required this.user})
+      : super(key: key);
 
   final AnimationController? animationController;
+  final User user;
   @override
   _DiaryScreenState createState() => _DiaryScreenState();
 }
