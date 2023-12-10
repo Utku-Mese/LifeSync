@@ -62,7 +62,7 @@ class _ProfileScreenState extends State<ProfileScreen>
     listViews.add(
       ProfileCardView(
         animationController: widget.animationController,
-        name: widget.user.email!,
+        user: widget.user,
       ),
     );
 

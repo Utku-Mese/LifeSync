@@ -12,7 +12,20 @@
           "package_name": "com.example.life_sync"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1078827487367-phika9avmet34kfechnanousqaaail29.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.life_sync",
+            "certificate_hash": "c9f3c9ce414a00520123a4d4ad78728749c881f6"
+          }
+        },
+        {
+          "client_id": "1078827487367-afgnu460edatejj6n33khbq89jfo8mp0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCqXaca27kQcYHjeZxyLJUwFGS0Zz7Q_kM"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1078827487367-afgnu460edatejj6n33khbq89jfo8mp0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1078827487367-22aei535590d9ug36nafajsi9ua1u3oh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.lifeSync.RunnerTests"
+              }
+            }
+          ]
         }
       }
     }

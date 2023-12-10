@@ -6,9 +6,11 @@ class ProfilePhotoView extends StatelessWidget {
   const ProfilePhotoView({
     super.key,
     this.animationController,
+    required this.imagePath,
   });
 
   final AnimationController? animationController;
+  final String imagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +36,16 @@ class ProfilePhotoView extends StatelessWidget {
         margin: const EdgeInsets.all(8.0),
         child: CircleAvatar(
           child: ClipOval(
-            child: Image.network(
-                'https://avatars.githubusercontent.com/u/94257756?v=4'),
-          ),
+              child: Image.network(
+            imagePath,
+            fit: BoxFit.cover,
+            width: 90,
+            height: 90,
+          )
+
+              /* Image.network(
+                'https://avatars.githubusercontent.com/u/94257756?v=4'), */
+              ),
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:life_sync/views/profile/widgets/profile_photo_view.dart';
 
@@ -5,10 +6,10 @@ import '../../../utils/app_theme.dart';
 
 class ProfileCardView extends StatelessWidget {
   const ProfileCardView(
-      {super.key, this.animationController, required this.name});
+      {super.key, this.animationController, required this.user});
 
   final AnimationController? animationController;
-  final String name;
+  final User user;
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +45,15 @@ class ProfileCardView extends StatelessWidget {
           child: Row(
             children: [
               ProfilePhotoView(
+                imagePath: user.photoURL ??
+                    'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/2048px-Windows_10_Default_Profile_Picture.svg.png',
                 animationController: animationController!,
               ),
               const SizedBox(width: 16.0),
               Column(
                 children: [
                   Text(
-                    name,
+                    user.displayName ?? user.email!,
                     style: const TextStyle(
                       fontFamily: AppTheme.fontName,
                       fontWeight: FontWeight.bold,

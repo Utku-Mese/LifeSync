@@ -119,14 +119,20 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                const Padding(
-                  padding: EdgeInsets.all(16.0),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SocialAuthCard(imagePath: 'assets/images/google.png'),
-                      SizedBox(width: 24.0),
-                      SocialAuthCard(imagePath: 'assets/images/facebook.png'),
+                      SocialAuthCard(
+                        imagePath: 'assets/images/google.png',
+                        onPressed: authController.signInWithGoogle,
+                      ),
+                      const SizedBox(width: 24.0),
+                      const SocialAuthCard(
+                        imagePath: 'assets/images/facebook.png',
+                        onPressed: null,
+                      ),
                     ],
                   ),
                 ),
