@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:life_sync/models/food_model.dart';
 import 'package:life_sync/utils/app_theme.dart';
+import 'package:life_sync/views/diary/widgets/foodList/my_search_bar_view.dart';
 import '../../controller/food_controller.dart';
 import 'widgets/foodList/food_list_tile_view.dart';
 
@@ -24,6 +25,7 @@ class _FoodListScreenState extends State<FoodListScreen> {
     return Scaffold(
       backgroundColor: AppTheme.background,
       appBar: AppBar(
+        backgroundColor: AppTheme.nearlyDarkBlue,
         iconTheme: const IconThemeData(color: AppTheme.nearlyWhite),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -54,28 +56,46 @@ class _FoodListScreenState extends State<FoodListScreen> {
             color: AppTheme.nearlyWhite,
           ),
         ),
-        backgroundColor: AppTheme.nearlyDarkBlue,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: IconButton(
+              icon: const Icon(
+                Icons.filter_alt_rounded,
+                color: AppTheme.nearlyWhite,
+              ),
+              onPressed: () {},
+            ),
+          ),
+        ],
       ),
-      body: FutureBuilder<List<Food>>(
-        future: _foodController.fetchFoods(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(
-              child: Text('Could not retrieve data: ${snapshot.error}'),
-            );
-          } else {
-            final foods = snapshot.data;
-            return ListView.builder(
-              itemCount: foods?.length,
-              itemBuilder: (context, index) {
-                return FoodListTile(foods: foods, index: index);
+      body: Column(
+        children: [
+          const MySearchBar(),
+          Expanded(
+            child: FutureBuilder<List<Food>>(
+              future: _foodController.fetchFoods(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text('Could not retrieve data: ${snapshot.error}'),
+                  );
+                } else {
+                  final foods = snapshot.data;
+                  return ListView.builder(
+                    itemCount: foods?.length,
+                    itemBuilder: (context, index) {
+                      return FoodListTile(foods: foods, index: index);
+                    },
+                    padding: const EdgeInsets.only(bottom: 20.0),
+                  );
+                }
               },
-              padding: const EdgeInsets.only(bottom: 20.0),
-            );
-          }
-        },
+            ),
+          ),
+        ],
       ),
     );
   }
