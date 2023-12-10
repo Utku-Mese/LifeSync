@@ -82,10 +82,11 @@ class FoodListTile extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
       ),
-      title: Text(foods![index].name!, style: AppTheme.title),
+      title: Text(foods![index].name!, style: AppTheme.title.copyWith(fontFamily: AppTheme.fontName), overflow: TextOverflow.ellipsis),
       subtitle: Text(
         foods![index].type!,
         style: const TextStyle(fontSize: 15),
+        overflow: TextOverflow.ellipsis,
       ),
       trailing: const Icon(Icons.add, color: AppTheme.nearlyDarkBlue),
     );
