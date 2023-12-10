@@ -11,7 +11,7 @@ class FoodController {
 
   Future<List<Food>> fetchFoods() async {
     final response =
-        await http.get(Uri.parse('http://192.168.1.34:8000/api/foods'));
+        await http.get(Uri.parse('http://192.168.1.36:8000/foods'));
 
     if (response.statusCode == 200) {
       final foods = parseFoods(response.body);
@@ -22,8 +22,8 @@ class FoodController {
   }
 
   Future<List<Food>> fetchFoodsByType(String type) async {
-    final response =
-        await http.get(Uri.parse('http://192.168.1.34:8000/api/foods/$type'));
+    final response = await http.get(Uri.parse(
+        'http://192.168.1.34:8000/api/foods/$type')); //! ToDo: /api rootlari kaldirilmali
 
     if (response.statusCode == 200) {
       final foods = parseFoods(response.body);
@@ -53,7 +53,7 @@ class FoodController {
   }
 
   getCalories(Food food, double porsiyon) {
-    double calories = double.parse(food.calories ?? '0.0');
+    int calories = food.calories ?? 0;
     return calories * (porsiyon / 100);
   }
 }

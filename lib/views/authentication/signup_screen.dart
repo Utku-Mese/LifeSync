@@ -148,7 +148,15 @@ class SignupScreen extends StatelessWidget {
                 children: [
                   SocialAuthCard(
                     imagePath: 'assets/images/google.png',
-                    onPressed: authController.signInWithGoogle,
+                    onPressed: () async {
+                      authController.signInWithGoogle();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                      );
+                    },
                   ),
                   const SizedBox(width: 24.0),
                   const SocialAuthCard(

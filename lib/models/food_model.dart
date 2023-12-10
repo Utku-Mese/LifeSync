@@ -1,12 +1,11 @@
-
 class Food {
-  String? isApproved;
+  int? isApproved;
   String? type;
   String? name;
-  String? calories;
-  String? fat;
-  String? protein;
-  String? carbohydrate;
+  int? calories;
+  double? fat;
+  double? protein;
+  double? carbohydrate;
 
   Food(
       {this.isApproved,
