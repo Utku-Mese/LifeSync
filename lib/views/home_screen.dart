@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:life_sync/utils/app_theme.dart';
 import 'package:life_sync/views/diary/diary_screen.dart';
+import 'package:life_sync/views/news%20and%20recipes/journal_screen.dart';
 import 'package:life_sync/views/profile/profile_screen.dart';
 
 import '../utils/tab_icon_data.dart';
@@ -107,8 +108,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   return;
                 }
                 setState(() {
-                  tabBody =
-                      TrainingScreen(animationController: animationController, user: FirebaseAuth.instance.currentUser!,);
+                  tabBody = TrainingScreen(
+                    animationController: animationController,
+                    user: FirebaseAuth.instance.currentUser!,
+                  );
                 });
               });
             } else if (index == 2) {
@@ -117,10 +120,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   return;
                 }
                 setState(() {
-                  tabBody = const Center(
-                    child: Text(
-                        "Tarifler ve bülten üstten 2 tane tab  olucak wp gibi"),
-                  );
+                  tabBody = const JournalScreen();
                 });
               });
             } else if (index == 3) {
