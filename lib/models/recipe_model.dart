@@ -20,7 +20,7 @@ class Recipe{
     recipe = json['recipe'];
     thumbnail = json['thumbnail'];
     source = json['source'];
-    video = json['source'];
+    video = json['video'];
   }
     Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
