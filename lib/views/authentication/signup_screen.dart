@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:life_sync/controller/auth_controller.dart';
+import 'package:life_sync/views/authentication/form_screen.dart';
 import 'package:life_sync/views/authentication/login_screen.dart';
 import 'package:life_sync/views/authentication/widgets/my_text_field.dart';
 
@@ -70,18 +71,25 @@ class SignupScreen extends StatelessWidget {
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
               child: ElevatedButton(
                 onPressed: () {
-                  if (passwordController.text ==
-                      confirmPasswordController.text) {
-                    authController.createUserWithEmailAndPassword(
-                      emailController.text,
-                      passwordController.text,
-                    );
+                  if (emailController.text.isNotEmpty &&
+                      passwordController.text.isNotEmpty &&
+                      passwordController.text ==
+                          confirmPasswordController.text) {
                     Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FormScreen(
+                          email: emailController.text,
+                          password: passwordController.text,
+                        ),
+                      ),
+                    );
+                    /* Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => const LoginScreen(),
                       ),
-                    );
+                    ); */
                   } else {
                     showDialog(
                       context: context,

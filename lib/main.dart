@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:life_sync/utils/app_theme.dart';
 import 'package:life_sync/views/authentication/form_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:life_sync/views/authentication/login_screen.dart';
 import 'services/firebase_options.dart';
 
 Future main() async {
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
         textTheme: AppTheme.textTheme,
         useMaterial3: false,
       ),
-      home: const FormScreen(),
+      home: const LoginScreen(),
     );
   }
 }

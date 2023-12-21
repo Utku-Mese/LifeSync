@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:life_sync/controller/auth_controller.dart';
 import 'package:life_sync/utils/app_theme.dart';
+import 'login_screen.dart';
 import 'widgets/my_text_field.dart';
 
 class FormScreen extends StatefulWidget {
-  const FormScreen({super.key});
+  const FormScreen({super.key, required this.email, required this.password});
+
+  final String email;
+  final String password;
 
   @override
   State<FormScreen> createState() => _FormScreenState();
@@ -16,9 +21,10 @@ class _FormScreenState extends State<FormScreen> {
   final TextEditingController _legthController = TextEditingController();
   final TextEditingController _weightController = TextEditingController();
 
-  DateTime selectedDate =
-      DateTime.now(); // Seçilen tarihi tutmak için bir değişken
-  String _gender = "";
+  AuthController authController = AuthController();
+
+  DateTime selectedDate = DateTime.now();
+  String _gender = 'Diğer';
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -54,7 +60,26 @@ class _FormScreenState extends State<FormScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                authController.createUserWithEmailAndPassword(
+                  email: widget.email,
+                  password: widget.password,
+                  name: _nameController.text,
+                  surname: _surnameController.text,
+                  username: _userNameController.text,
+                  profilePhoto: authController.image,
+                  height: int.parse(_legthController.text),
+                  weight: double.parse(_weightController.text),
+                  birdDate: selectedDate,
+                  gender: _gender,
+                );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LoginScreen(),
+                  ),
+                );
+              },
               style: ButtonStyle(
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
@@ -78,6 +103,49 @@ class _FormScreenState extends State<FormScreen> {
       ),
       body: ListView(
         children: <Widget>[
+          Center(
+            child: Stack(
+              children: [
+                CircleAvatar(
+                  radius: 60,
+                  backgroundColor: AppTheme.nearlyDarkBlue.withOpacity(0.2),
+                  child: CircleAvatar(
+                    radius: 55,
+                    backgroundColor: AppTheme.nearlyDarkBlue.withOpacity(0.4),
+                    child: CircleAvatar(
+                      radius: 50,
+                      backgroundColor: Colors.white,
+                      child: Icon(
+                        Icons.person_rounded,
+                        size: 85,
+                        color: AppTheme.nearlyDarkBlue.withOpacity(0.6),
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 1,
+                  right: 1,
+                  child: InkWell(
+                    onTap: () => authController.pickImage(),
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.6),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: const Icon(
+                        Icons.add_a_photo,
+                        size: 30,
+                        color: Color(0XFF767676),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -199,6 +267,19 @@ class _FormScreenState extends State<FormScreen> {
                               },
                             ),
                             const Text('Kadın', style: TextStyle(fontSize: 16)),
+                            Radio(
+                              fillColor: MaterialStateProperty.all<Color>(
+                                AppTheme.nearlyDarkBlue,
+                              ),
+                              value: 'Diğer',
+                              groupValue: _gender,
+                              onChanged: (value) {
+                                setState(() {
+                                  _gender = value.toString();
+                                });
+                              },
+                            ),
+                            const Text('Diğer', style: TextStyle(fontSize: 16)),
                           ],
                         ),
                       ],
