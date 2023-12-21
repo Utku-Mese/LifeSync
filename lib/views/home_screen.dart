@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:life_sync/controller/auth_controller.dart';
 import 'package:life_sync/utils/app_theme.dart';
 import 'package:life_sync/views/diary/diary_screen.dart';
 import 'package:life_sync/views/news%20and%20recipes/journal_screen.dart';
@@ -8,6 +9,7 @@ import 'package:life_sync/views/profile/profile_screen.dart';
 import '../utils/tab_icon_data.dart';
 import 'training/training_screen.dart';
 import 'widgets/bottom_bar_view.dart';
+import '../models/user_model.dart' as Umodel;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   AnimationController? animationController;
 
   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
+  AuthController authController = AuthController();
 
   Widget tabBody = Container(
     color: AppTheme.background,
@@ -89,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         BottomBarView(
           tabIconsList: tabIconsList,
           addClick: () {},
-          changeIndex: (int index) {
+          changeIndex: (int index) async {
             if (index == 0) {
               animationController?.reverse().then<dynamic>((data) {
                 if (!mounted) {
@@ -124,6 +127,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 });
               });
             } else if (index == 3) {
+              Umodel.User? currentUser = authController.userAuth != null
+                  ? await Umodel.User.getUserData(authController.userAuth!.uid)
+                  : null;
               animationController?.reverse().then<dynamic>((data) {
                 if (!mounted) {
                   return;
@@ -131,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 setState(() {
                   tabBody = ProfileScreen(
                     animationController: animationController,
-                    user: FirebaseAuth.instance.currentUser!,
+                    user: currentUser!,
                   );
                 });
               });

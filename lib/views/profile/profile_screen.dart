@@ -4,12 +4,13 @@ import 'package:life_sync/controller/auth_controller.dart';
 import 'package:life_sync/views/profile/widgets/profile_card_view.dart';
 
 import '../../utils/app_theme.dart';
+import '../../models/user_model.dart' as Umodel;
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen(
       {super.key, this.animationController, required this.user});
 
-  final User user;
+  final Umodel.User user;
   final AnimationController? animationController;
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -75,6 +76,12 @@ class _ProfileScreenState extends State<ProfileScreen>
           },
           child: const Text('Çıkış Yap'),
         ),
+      ),
+    );
+    listViews.add(
+      Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Text(widget.user.name),
       ),
     );
   }

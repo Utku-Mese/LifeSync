@@ -1,4 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:life_sync/views/authentication/login_screen.dart';
+
+import '../utils/constants.dart';
 
 class User {
   String name;
@@ -38,6 +41,22 @@ class User {
         "birdDate": birdDate,
       };
 
+  
+
+  static Future<User?> getUserData(String uid) async {
+    try {
+      var snapshot = await firestore.collection('users').doc(uid).get();
+      if (snapshot.exists) {
+        return fromSnap(snapshot);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print("Firestore veri çekme hatası: $e");
+      return null;
+    }
+  }
+
   static User fromSnap(DocumentSnapshot snap) {
     var snapshot = snap.data() as Map<String, dynamic>;
     return User(
@@ -49,7 +68,7 @@ class User {
       username: snapshot['username'],
       height: snapshot['height'],
       weight: snapshot['weight'],
-      birdDate: snapshot['birdDate'],
+      birdDate: DateTime.parse(snapshot['birdDate'].toDate().toString()),
       gender: snapshot['gender'],
     );
   }
