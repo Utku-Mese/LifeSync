@@ -6,7 +6,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:life_sync/models/user_model.dart' as Umodel;
 import '../utils/constants.dart';
-import '../views/authentication/widgets/show_snack_bar.dart';
 
 class AuthController {
   String downloadUrl =

@@ -1,20 +1,18 @@
-class Recipe{
+class Recipe {
   String? title;
   String? contents;
-  String? recipe
+  String? recipe;
   String? thumbnail;
   String? source;
   String? video;
-  Recipe({
-    
-    this.title, 
-    this.contents, 
-    this.recipe, 
-    this.thumbnail, 
-    this.source,
-    this.video
-    });
-    Recipe.fromJson(Map<String, dynamic> json) {
+  Recipe(
+      {this.title,
+      this.contents,
+      this.recipe,
+      this.thumbnail,
+      this.source,
+      this.video});
+  Recipe.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     contents = json['contents'];
     recipe = json['recipe'];
@@ -22,7 +20,7 @@ class Recipe{
     source = json['source'];
     video = json['video'];
   }
-    Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['title'] = title;
     data['contents'] = contents;
@@ -31,5 +29,5 @@ class Recipe{
     data['source'] = source;
     data['video'] = video;
     return data;
-  } 
+  }
 }
