@@ -13,6 +13,7 @@ class MealsListView extends StatefulWidget {
   final Animation<double>? mainScreenAnimation;
 
   @override
+  // ignore: library_private_types_in_public_api
   _MealsListViewState createState() => _MealsListViewState();
 }
 

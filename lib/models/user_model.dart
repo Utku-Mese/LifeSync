@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:life_sync/views/authentication/login_screen.dart';
 
 import '../utils/constants.dart';
 
@@ -52,6 +51,7 @@ class User {
         return null;
       }
     } catch (e) {
+      // ignore: avoid_print
       print("Firestore veri çekme hatası: $e");
       return null;
     }

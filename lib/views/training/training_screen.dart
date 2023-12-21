@@ -15,6 +15,7 @@ class TrainingScreen extends StatefulWidget {
   final User user;
   final AnimationController? animationController;
   @override
+  // ignore: library_private_types_in_public_api
   _TrainingScreenState createState() => _TrainingScreenState();
 }
 

@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:life_sync/views/diary/widgets/task_view.dart';
 import '../../utils/app_theme.dart';
@@ -8,6 +8,7 @@ import 'widgets/diet_view.dart';
 import 'widgets/info_view.dart';
 import 'widgets/meals_list_view.dart';
 import 'widgets/water_view.dart';
+// ignore: library_prefixes
 import '../../models/user_model.dart' as Umodel;
 
 class DiaryScreen extends StatefulWidget {
@@ -17,6 +18,7 @@ class DiaryScreen extends StatefulWidget {
   final AnimationController? animationController;
   final Umodel.User? user;
   @override
+  // ignore: library_private_types_in_public_api
   _DiaryScreenState createState() => _DiaryScreenState();
 }
 

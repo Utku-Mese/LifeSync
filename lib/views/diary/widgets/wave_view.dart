@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:vector_math/vector_math.dart' as vector;
 
 import '../../../utils/app_theme.dart';
@@ -9,6 +10,7 @@ class WaveView extends StatefulWidget {
 
   const WaveView({Key? key, this.percentageValue = 100.0}) : super(key: key);
   @override
+  // ignore: library_private_types_in_public_api
   _WaveViewState createState() => _WaveViewState();
 }
 

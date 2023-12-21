@@ -13,6 +13,7 @@ class NewsController {
     final response =await http.get(Uri.parse('http://192.168.1.36:8000/news'));
     if (response.statusCode == 200) {
       final news = parseNews(response.body);
+      // ignore: avoid_print
       print(response.body);
       return news;
     } else {

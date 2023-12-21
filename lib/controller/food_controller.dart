@@ -27,7 +27,7 @@ class FoodController {
 
     if (response.statusCode == 200) {
       final foods = parseFoods(response.body);
-      final foodByType = foods.where((Food) => Food.type == type).toList();
+      final foodByType = foods.where((food) => food.type == type).toList();
       return foodByType;
     } else {
       throw Exception('API request failed: ${response.statusCode}');

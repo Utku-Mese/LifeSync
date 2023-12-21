@@ -9,12 +9,14 @@ import 'package:life_sync/views/profile/profile_screen.dart';
 import '../utils/tab_icon_data.dart';
 import 'training/training_screen.dart';
 import 'widgets/bottom_bar_view.dart';
+// ignore: library_prefixes
 import '../models/user_model.dart' as Umodel;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomeScreenState createState() => _HomeScreenState();
 }
 
@@ -24,12 +26,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
   AuthController authController = AuthController();
 
-  Widget tabBody = Container(
+ Widget? tabBody;
+  /* Container(
     color: AppTheme.background,
-  );
+  ); */
 
   @override
   void initState() {
+    getData();
     for (var tab in tabIconsList) {
       tab.isSelected = false;
     }
@@ -66,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               } else {
                 return Stack(
                   children: <Widget>[
-                    tabBody,
+                    tabBody!,
                     bottomBar(),
                   ],
                 );
@@ -80,10 +84,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   Future<bool> getData() async {
     //await Future<dynamic>.delayed(const Duration(milliseconds: 200));
-     tabBody = DiaryScreen(
-      animationController: animationController,
-      user: await Umodel.User.getUserData(authController.userAuth!.uid),
-    );
+    if (tabBody == null) {
+      tabBody = DiaryScreen(
+        animationController: animationController,
+        user: await Umodel.User.getUserData(authController.userAuth!.uid),
+      );
+      return true;
+    }
     return true;
   }
 
@@ -98,8 +105,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           addClick: () {},
           changeIndex: (int index) async {
             Umodel.User? currentUser = authController.userAuth != null
-                  ? await Umodel.User.getUserData(authController.userAuth!.uid)
-                  : null;
+                ? await Umodel.User.getUserData(authController.userAuth!.uid)
+                : null;
             if (index == 0) {
               animationController?.reverse().then<dynamic>((data) {
                 if (!mounted) {
@@ -108,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 setState(() {
                   tabBody = DiaryScreen(
                     animationController: animationController,
-                    user: currentUser!,//FirebaseAuth.instance.currentUser!,
+                    user: currentUser!, //FirebaseAuth.instance.currentUser!,
                   );
                 });
               });

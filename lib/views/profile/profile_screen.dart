@@ -1,9 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:life_sync/controller/auth_controller.dart';
 import 'package:life_sync/views/profile/widgets/profile_card_view.dart';
 
 import '../../utils/app_theme.dart';
+// ignore: library_prefixes
 import '../../models/user_model.dart' as Umodel;
 
 class ProfileScreen extends StatefulWidget {

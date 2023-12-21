@@ -14,6 +14,7 @@ class BottomBarView extends StatefulWidget {
   final Function()? addClick;
   final List<TabIconData>? tabIconsList;
   @override
+  // ignore: library_private_types_in_public_api
   _BottomBarViewState createState() => _BottomBarViewState();
 }
 
@@ -230,6 +231,7 @@ class TabIcons extends StatefulWidget {
   final TabIconData? tabIconData;
   final Function()? removeAllSelect;
   @override
+  // ignore: library_private_types_in_public_api
   _TabIconsState createState() => _TabIconsState();
 }
 
