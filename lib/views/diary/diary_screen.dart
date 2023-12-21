@@ -8,13 +8,14 @@ import 'widgets/diet_view.dart';
 import 'widgets/info_view.dart';
 import 'widgets/meals_list_view.dart';
 import 'widgets/water_view.dart';
+import '../../models/user_model.dart' as Umodel;
 
 class DiaryScreen extends StatefulWidget {
   const DiaryScreen({Key? key, this.animationController, required this.user})
       : super(key: key);
 
   final AnimationController? animationController;
-  final User user;
+  final Umodel.User? user;
   @override
   _DiaryScreenState createState() => _DiaryScreenState();
 }
@@ -86,7 +87,7 @@ class _DiaryScreenState extends State<DiaryScreen>
     listViews.add(
       TitleView(
         titleTxt: 'Öğünler',
-        subTxt: 'Detaylar',
+        subTxt: '${widget.user!.name} için',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController!,
             curve: const Interval((1 / count) * 2, 1.0,

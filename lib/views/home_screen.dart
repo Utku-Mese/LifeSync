@@ -37,10 +37,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
     animationController = AnimationController(
         duration: const Duration(milliseconds: 600), vsync: this);
-    tabBody = DiaryScreen(
+    /* tabBody = DiaryScreen(
       animationController: animationController,
-      user: FirebaseAuth.instance.currentUser!,
-    );
+      user: Umodel.User.getUserData(authController.userAuth!.uid),
+    ); */
     super.initState();
   }
 
@@ -79,7 +79,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   Future<bool> getData() async {
-    await Future<dynamic>.delayed(const Duration(milliseconds: 200));
+    //await Future<dynamic>.delayed(const Duration(milliseconds: 200));
+     tabBody = DiaryScreen(
+      animationController: animationController,
+      user: await Umodel.User.getUserData(authController.userAuth!.uid),
+    );
     return true;
   }
 
@@ -93,6 +97,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           tabIconsList: tabIconsList,
           addClick: () {},
           changeIndex: (int index) async {
+            Umodel.User? currentUser = authController.userAuth != null
+                  ? await Umodel.User.getUserData(authController.userAuth!.uid)
+                  : null;
             if (index == 0) {
               animationController?.reverse().then<dynamic>((data) {
                 if (!mounted) {
@@ -101,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 setState(() {
                   tabBody = DiaryScreen(
                     animationController: animationController,
-                    user: FirebaseAuth.instance.currentUser!,
+                    user: currentUser!,//FirebaseAuth.instance.currentUser!,
                   );
                 });
               });
