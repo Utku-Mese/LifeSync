@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:life_sync/views/diary/widgets/task_view.dart';
 import '../../utils/app_theme.dart';
@@ -34,7 +33,9 @@ class _DiaryScreenState extends State<DiaryScreen>
   void initState() {
     topBarAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
         CurvedAnimation(
-            parent: widget.animationController!,
+            parent: widget.animationController ??
+                AnimationController(
+                    vsync: this, duration: const Duration(milliseconds: 600)),
             curve: const Interval(0, 0.5, curve: Curves.fastOutSlowIn)));
     addAllListData();
 
@@ -68,122 +69,176 @@ class _DiaryScreenState extends State<DiaryScreen>
 
     listViews.add(
       TitleView(
-        titleTxt: 'Besin Değerleri',
-        subTxt: 'Detaylar',
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController!,
-            curve: const Interval((1 / count) * 0, 1.0,
-                curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController!,
-      ),
+          titleTxt: 'Besin Değerleri',
+          subTxt: 'Detaylar',
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(
+              CurvedAnimation(
+                  parent: widget.animationController ??
+                      AnimationController(
+                          vsync: this,
+                          duration: const Duration(milliseconds: 600)),
+                  curve: const Interval((1 / count) * 0, 1.0,
+                      curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController ??
+              AnimationController(
+                  vsync: this, duration: const Duration(milliseconds: 600))),
     );
     listViews.add(
       DietView(
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController!,
-            curve: const Interval((1 / count) * 1, 1.0,
-                curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController!,
-      ),
+          user: widget.user!,
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(
+              CurvedAnimation(
+                  parent: widget.animationController ??
+                      AnimationController(
+                          vsync: this,
+                          duration: const Duration(milliseconds: 600)),
+                  curve: const Interval((1 / count) * 1, 1.0,
+                      curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController ??
+              AnimationController(
+                  vsync: this, duration: const Duration(milliseconds: 600))),
     );
     listViews.add(
       TitleView(
-        titleTxt: 'Öğünler',
-        subTxt: '${widget.user!.name} için',
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController!,
-            curve: const Interval((1 / count) * 2, 1.0,
-                curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController!,
-      ),
+          titleTxt: 'Öğünler',
+          subTxt: '${widget.user!.name} için',
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(
+              CurvedAnimation(
+                  parent: widget.animationController ??
+                      AnimationController(
+                          vsync: this,
+                          duration: const Duration(milliseconds: 600)),
+                  curve: const Interval((1 / count) * 2, 1.0,
+                      curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController ??
+              AnimationController(
+                  vsync: this, duration: const Duration(milliseconds: 600))),
     );
 
     listViews.add(
       MealsListView(
-        mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
-            CurvedAnimation(
-                parent: widget.animationController!,
-                curve: const Interval((1 / count) * 3, 1.0,
-                    curve: Curves.fastOutSlowIn))),
-        mainScreenAnimationController: widget.animationController,
-      ),
+          mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
+              CurvedAnimation(
+                  parent: widget.animationController ??
+                      AnimationController(
+                          vsync: this,
+                          duration: const Duration(milliseconds: 600)),
+                  curve: const Interval((1 / count) * 3, 1.0,
+                      curve: Curves.fastOutSlowIn))),
+          mainScreenAnimationController: widget.animationController ??
+              AnimationController(
+                  vsync: this, duration: const Duration(milliseconds: 600))),
     );
 
     listViews.add(
       TitleView(
-        titleTxt: 'Su',
-        subTxt: 'Detaylar',
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController!,
-            curve: const Interval((1 / count) * 6, 1.0,
-                curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController!,
-      ),
+          titleTxt: 'Su',
+          subTxt: 'Detaylar',
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(
+              CurvedAnimation(
+                  parent: widget.animationController ??
+                      AnimationController(
+                          vsync: this,
+                          duration: const Duration(milliseconds: 600)),
+                  curve: const Interval((1 / count) * 6, 1.0,
+                      curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController ??
+              AnimationController(
+                  vsync: this, duration: const Duration(milliseconds: 600))),
     );
 
     listViews.add(
       WaterView(
-        mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
-            CurvedAnimation(
-                parent: widget.animationController!,
-                curve: const Interval((1 / count) * 7, 1.0,
-                    curve: Curves.fastOutSlowIn))),
-        mainScreenAnimationController: widget.animationController!,
-      ),
+          mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
+              CurvedAnimation(
+                  parent: widget.animationController ??
+                      AnimationController(
+                          vsync: this,
+                          duration: const Duration(milliseconds: 600)),
+                  curve: const Interval((1 / count) * 7, 1.0,
+                      curve: Curves.fastOutSlowIn))),
+          mainScreenAnimationController: widget.animationController ??
+              AnimationController(
+                  vsync: this, duration: const Duration(milliseconds: 600))),
     );
 
     listViews.add(
       InfoView(
-          animation: Tween<double>(begin: 0.0, end: 1.0).animate(
-              CurvedAnimation(
-                  parent: widget.animationController!,
-                  curve: const Interval((1 / count) * 8, 1.0,
-                      curve: Curves.fastOutSlowIn))),
-          animationController: widget.animationController!),
+        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: widget.animationController ??
+                AnimationController(
+                    vsync: this, duration: const Duration(milliseconds: 600)),
+            curve: const Interval((1 / count) * 8, 1.0,
+                curve: Curves.fastOutSlowIn))),
+        animationController: widget.animationController ??
+            AnimationController(
+                vsync: this, duration: const Duration(milliseconds: 600)),
+      ),
     );
 
     listViews.add(
       TitleView(
-        titleTxt: 'Vücut Ölçüleri',
-        subTxt: 'Düzenle',
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController!,
-            curve: const Interval((1 / count) * 4, 1.0,
-                curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController!,
-      ),
+          titleTxt: 'Vücut Ölçüleri',
+          subTxt: 'Düzenle',
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(
+              CurvedAnimation(
+                  parent: widget.animationController ??
+                      AnimationController(
+                          vsync: this,
+                          duration: const Duration(milliseconds: 600)),
+                  curve: const Interval((1 / count) * 4, 1.0,
+                      curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController ??
+              AnimationController(
+                  vsync: this, duration: const Duration(milliseconds: 600))),
     );
 
     listViews.add(
       BodyMeasurementView(
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController!,
-            curve: const Interval((1 / count) * 5, 1.0,
-                curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController!,
-      ),
+          user: widget.user!,
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(
+              CurvedAnimation(
+                  parent: widget.animationController ??
+                      AnimationController(
+                          vsync: this,
+                          duration: const Duration(milliseconds: 600)),
+                  curve: const Interval((1 / count) * 5, 1.0,
+                      curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController ??
+              AnimationController(
+                  vsync: this, duration: const Duration(milliseconds: 600))),
     );
 
     listViews.add(
       TitleView(
-        titleTxt: "Görevler",
-        subTxt: "Tümünü Gör",
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController!,
-            curve: const Interval((1 / count) * 4, 1.0,
-                curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController!,
-      ),
+          titleTxt: "Görevler",
+          subTxt: "Tümünü Gör",
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(
+              CurvedAnimation(
+                  parent: widget.animationController ??
+                      AnimationController(
+                          vsync: this,
+                          duration: const Duration(milliseconds: 600)),
+                  curve: const Interval((1 / count) * 4, 1.0,
+                      curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController ??
+              AnimationController(
+                  vsync: this, duration: const Duration(milliseconds: 600))),
     );
 
     listViews.add(
       TaskView(
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController!,
-            curve: const Interval((1 / count) * 5, 1.0,
-                curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController!,
-      ),
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(
+              CurvedAnimation(
+                  parent: widget.animationController ??
+                      AnimationController(
+                          vsync: this,
+                          duration: const Duration(milliseconds: 600)),
+                  curve: const Interval((1 / count) * 5, 1.0,
+                      curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController ??
+              AnimationController(
+                  vsync: this, duration: const Duration(milliseconds: 600))),
     );
 
     listViews.add(const SizedBox(height: 8));
@@ -244,7 +299,9 @@ class _DiaryScreenState extends State<DiaryScreen>
     return Column(
       children: <Widget>[
         AnimatedBuilder(
-          animation: widget.animationController!,
+          animation: widget.animationController ??
+              AnimationController(
+                  vsync: this, duration: const Duration(milliseconds: 600)),
           builder: (BuildContext context, Widget? child) {
             return FadeTransition(
               opacity: topBarAnimation!,

@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:life_sync/controller/body_measurement_controller.dart';
+// ignore: unused_import, library_prefixes
+import '../../../models/user_model.dart' as Umodel;
 import '../../../utils/app_theme.dart';
 
 class BodyMeasurementView extends StatelessWidget {
   final AnimationController? animationController;
   final Animation<double>? animation;
+  final Umodel.User user;
 
   const BodyMeasurementView(
-      {Key? key, this.animationController, this.animation})
+      {Key? key, this.animationController, this.animation, required this.user})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    BodyMeasurementController bodyMeasurementController =
+        BodyMeasurementController();
     return AnimatedBuilder(
       animation: animationController!,
       builder: (BuildContext context, Widget? child) {
@@ -64,17 +70,17 @@ class BodyMeasurementView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              const Row(
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: <Widget>[
                                   Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 4, bottom: 3),
+                                    padding: const EdgeInsets.only(
+                                        left: 4, bottom: 3),
                                     child: Text(
-                                      '94.8',
+                                      user.weight.toString(),
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontFamily: AppTheme.fontName,
                                         fontWeight: FontWeight.w600,
                                         fontSize: 32,
@@ -82,7 +88,7 @@ class BodyMeasurementView extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  Padding(
+                                  const Padding(
                                     padding:
                                         EdgeInsets.only(left: 8, bottom: 8),
                                     child: Text(
@@ -172,10 +178,10 @@ class BodyMeasurementView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                const Text(
-                                  '184 cm',
+                                Text(
+                                  '${user.height} cm',
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontFamily: AppTheme.fontName,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 16,
@@ -207,10 +213,10 @@ class BodyMeasurementView extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
-                                  const Text(
-                                    '27.3 kg/m2',
+                                  Text(
+                                    '${bodyMeasurementController.calculateBMI(user.weight, user.height).toStringAsFixed(2)} kg/m2',
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontFamily: AppTheme.fontName,
                                       fontWeight: FontWeight.w500,
                                       fontSize: 16,
@@ -244,9 +250,9 @@ class BodyMeasurementView extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: <Widget>[
-                                    const Text(
-                                      '20%',
-                                      style: TextStyle(
+                                    Text(
+                                      '${bodyMeasurementController.calculateBodyFatPercentage(user.weight, user.height, bodyMeasurementController.calculateAge(user.birdDate), user.gender == 'Erkek' ? true : false).toStringAsFixed(2)} %',
+                                      style: const TextStyle(
                                         fontFamily: AppTheme.fontName,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 16,

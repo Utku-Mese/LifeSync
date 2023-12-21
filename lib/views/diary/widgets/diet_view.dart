@@ -3,12 +3,17 @@ import 'package:flutter/material.dart';
 import '../../../utils/app_theme.dart';
 import '../../../utils/hex_color.dart';
 import '../../widgets/curve_painter.dart';
+// ignore: library_prefixes
+import '../../../models/user_model.dart' as Umodel;
 
 class DietView extends StatelessWidget {
   final AnimationController? animationController;
   final Animation<double>? animation;
 
-  const DietView({Key? key, this.animationController, this.animation})
+  final Umodel.User? user;
+
+  const DietView(
+      {Key? key, this.animationController, this.animation, required this.user})
       : super(key: key);
 
   @override
@@ -99,7 +104,7 @@ class DietView extends StatelessWidget {
                                                       const EdgeInsets.only(
                                                           left: 4, bottom: 3),
                                                   child: Text(
-                                                    '${(1127 * animation!.value).toInt()}',
+                                                    '${(user!.calorie * animation!.value).toInt()}',
                                                     textAlign: TextAlign.center,
                                                     style: const TextStyle(
                                                       fontFamily:
@@ -545,4 +550,3 @@ class DietView extends StatelessWidget {
     );
   }
 }
-

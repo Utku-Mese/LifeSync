@@ -85,6 +85,12 @@ class AuthController {
     required double weight,
     required DateTime birdDate,
     required String gender,
+    int calorie = 0,
+    double fat = 0,
+    double protein = 0,
+    double carbohydrate = 0,
+    int water = 0,
+    
   }) async {
     try {
       if (name.isNotEmpty &&
@@ -114,6 +120,11 @@ class AuthController {
           weight: weight,
           birdDate: birdDate,
           gender: gender,
+          calorie: calorie,
+          fat: fat,
+          protein: protein,
+          carbohydrate: carbohydrate,
+          water: water,
         );
 
         // Firestore'a kullanıcı bilgilerini ekleyin

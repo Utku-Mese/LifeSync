@@ -4,10 +4,10 @@ import '../../../utils/app_theme.dart';
 
 class ProfilePhotoView extends StatelessWidget {
   const ProfilePhotoView({
-    super.key,
+    Key? key,
     this.animationController,
     required this.imagePath,
-  });
+  }) : super(key: key);
 
   final AnimationController? animationController;
   final String imagePath;
@@ -17,7 +17,9 @@ class ProfilePhotoView extends StatelessWidget {
     return ScaleTransition(
       alignment: Alignment.center,
       scale: CurvedAnimation(
-          parent: animationController!, curve: Curves.fastOutSlowIn),
+        parent: animationController!,
+        curve: Curves.fastOutSlowIn,
+      ),
       child: Container(
         decoration: BoxDecoration(
           color: AppTheme.nearlyDarkBlue.withOpacity(0.5),
@@ -36,18 +38,44 @@ class ProfilePhotoView extends StatelessWidget {
         margin: const EdgeInsets.all(8.0),
         child: CircleAvatar(
           child: ClipOval(
-              child: Image.network(
-            imagePath,
-            fit: BoxFit.cover,
-            width: 90,
-            height: 90,
-          )
-
-              /* Image.network(
-                'https://avatars.githubusercontent.com/u/94257756?v=4'), */
-              ),
+            child: FutureBuilder<Image>(
+              future: loadImage(context),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  // Eğer resim yükleniyorsa, bir loading indicator göster
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  // Eğer bir hata oluşursa, hata mesajını göster
+                  return Center(
+                    child: Text('Hata oluştu: ${snapshot.error}'),
+                  );
+                } else {
+                  // Resim başarıyla yüklendiyse, Image widget'ını göster
+                  return snapshot.data!;
+                }
+              },
+            ),
+          ),
         ),
       ),
     );
+  }
+
+  Future<Image> loadImage(BuildContext context) async {
+    // Asenkron olarak resmi yükle
+    Image image = Image.network(
+      imagePath,
+      fit: BoxFit.cover,
+      width: 90,
+      height: 90,
+    );
+
+    // Resmin yüklenip yüklenmediğini bekleyerek kontrol et
+    await precacheImage(image.image, context);
+    return image;
   }
 }
