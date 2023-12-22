@@ -117,6 +117,7 @@ class _DiaryScreenState extends State<DiaryScreen>
 
     listViews.add(
       MealsListView(
+          user: widget.user!,
           mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
               CurvedAnimation(
                   parent: widget.animationController ??
@@ -276,20 +277,28 @@ class _DiaryScreenState extends State<DiaryScreen>
         if (!snapshot.hasData) {
           return const SizedBox();
         } else {
-          return ListView.builder(
-            controller: scrollController,
-            padding: EdgeInsets.only(
-              top: AppBar().preferredSize.height +
-                  MediaQuery.of(context).padding.top +
-                  24,
-              bottom: 62 + MediaQuery.of(context).padding.bottom,
-            ),
-            itemCount: listViews.length,
-            scrollDirection: Axis.vertical,
-            itemBuilder: (BuildContext context, int index) {
-              widget.animationController?.forward();
-              return listViews[index];
+          return RefreshIndicator(
+            onRefresh: () async {
+              setState(() {
+                listViews = <Widget>[];
+                addAllListData();
+              });
             },
+            child: ListView.builder(
+              controller: scrollController,
+              padding: EdgeInsets.only(
+                top: AppBar().preferredSize.height +
+                    MediaQuery.of(context).padding.top +
+                    24,
+                bottom: 62 + MediaQuery.of(context).padding.bottom,
+              ),
+              itemCount: listViews.length,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (BuildContext context, int index) {
+                widget.animationController?.forward();
+                return listViews[index];
+              },
+            ),
           );
         }
       },

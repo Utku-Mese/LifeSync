@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_share/flutter_share.dart';
 
-import 'package:url_launcher/url_launcher.dart';
-
 //FIREBASE
 var firebaseAuth = FirebaseAuth.instance;
 var firebaseStorage = FirebaseStorage.instance;

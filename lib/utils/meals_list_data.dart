@@ -1,5 +1,6 @@
 class MealsListData {
   MealsListData({
+    required this.mealType,
     this.imagePath = '',
     this.titleTxt = '',
     this.startColor = '',
@@ -14,9 +15,12 @@ class MealsListData {
   String endColor;
   List<String>? meals;
   int kacl;
+  String mealType;
 
   static List<MealsListData> tabIconsList = <MealsListData>[
+    //ToDo: Burada meal type eklıcem
     MealsListData(
+      mealType: 'Breakfast',
       imagePath: 'assets/images/breakfast.png',
       titleTxt: 'Kahvaltı',
       kacl: 525,
@@ -25,14 +29,16 @@ class MealsListData {
       endColor: '#FFB295',
     ),
     MealsListData(
+      mealType: 'Lunch',
       imagePath: 'assets/images/lunch.png',
       titleTxt: 'Öğle Yemeği',
-      kacl: 602, 
+      kacl: 602,
       meals: <String>['Gereken:', '800 kcal'],
       startColor: '#10D8D0',
       endColor: '#20E8B0',
     ),
     MealsListData(
+      mealType: 'Snack',
       imagePath: 'assets/images/snack.png',
       titleTxt: 'Atıştırma',
       kacl: 0,
@@ -41,6 +47,7 @@ class MealsListData {
       endColor: '#FF5287',
     ),
     MealsListData(
+      mealType: 'Dinner',
       imagePath: 'assets/images/dinner.png',
       titleTxt: 'Akşam Yemeği',
       kacl: 0,

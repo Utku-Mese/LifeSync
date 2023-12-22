@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:life_sync/models/food_model.dart';
+import 'package:life_sync/models/user_model.dart';
 import 'package:life_sync/utils/app_theme.dart';
 import 'package:life_sync/views/diary/widgets/foodList/my_search_bar_view.dart';
 import '../../controller/food_controller.dart';
@@ -9,8 +10,11 @@ class FoodListScreen extends StatefulWidget {
   const FoodListScreen({
     super.key,
     this.animationController,
+    required this.user,
+    required this.mealType,
   });
-
+  final User user;
+  final String mealType;
   final AnimationController? animationController;
 
   @override
@@ -87,7 +91,12 @@ class _FoodListScreenState extends State<FoodListScreen> {
                   return ListView.builder(
                     itemCount: foods?.length,
                     itemBuilder: (context, index) {
-                      return FoodListTile(foods: foods, index: index);
+                      return FoodListTile(
+                        foods: foods,
+                        index: index,
+                        user: widget.user,
+                        mealType: widget.mealType,
+                      );
                     },
                     padding: const EdgeInsets.only(bottom: 20.0),
                   );
