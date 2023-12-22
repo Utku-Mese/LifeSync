@@ -150,7 +150,69 @@ class DiaryController {
       return 0;
     }
   }
+
+  Future<void> addWater(User user, int water) async {
+    try {
+      int newWater = user.water + water;
+
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .update({'water': newWater});
+    } catch (e) {
+      // Handle error
+      // ignore: avoid_print
+      print("Error adding to diary: $e");
+      throw Exception('Could not add to diary.');
+    }
+  }
+
+  Future<void> deleteWater(User user, int water) async {
+    try {
+      int newWater = user.water - water;
+
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .update({'water': newWater});
+    } catch (e) {
+      // Handle error
+      // ignore: avoid_print
+      print("Error deleting from diary: $e");
+      throw Exception('Could not delete from diary.');
+    }
+  }
+
+  Future<void> updateWater(User user, int water) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .update({'water': water});
+    } catch (e) {
+      throw Exception('Could not update diary.');
+    }
+  }
+
+  Future<int> getWaterData(User user) async {
+    int water = 0;
+    try {
+      var documentSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+      if (documentSnapshot.exists) {
+        water = documentSnapshot.data()?['water'] as int;
+        return water;
+      } else {
+        return 0;
+      }
+    } catch (e) {
+      return 0;
+    }
+  }
 }
+
 
 
 

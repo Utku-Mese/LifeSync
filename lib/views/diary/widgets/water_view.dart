@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:life_sync/controller/diary_controller.dart';
 import '../../../utils/app_theme.dart';
 import '../../../utils/hex_color.dart';
 import 'wave_view.dart';
@@ -27,6 +28,8 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
     await Future<dynamic>.delayed(const Duration(milliseconds: 50));
     return true;
   }
+
+  DiaryController diaryController = DiaryController();
 
   double waweCount = 0;
   double waterCount = 0;
@@ -228,6 +231,10 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
                                     waweCount += 5;
                                     waterCount += 175;
                                   });
+                                  diaryController.updateWater(
+                                      widget.user!,
+                                      waterCount
+                                          .toInt()); // ToDo: Check if this is correct
                                 }
                               },
                               child: Container(
@@ -262,6 +269,10 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
                                     waweCount -= 5;
                                     waterCount -= 175;
                                   });
+                                  diaryController.updateWater(
+                                      widget.user!,
+                                      waterCount
+                                          .toInt()); // ToDo: Check if this is correct
                                 }
                               },
                               child: Container(
