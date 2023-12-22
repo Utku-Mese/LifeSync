@@ -101,7 +101,7 @@ class _DiaryScreenState extends State<DiaryScreen>
     listViews.add(
       TitleView(
           titleTxt: 'Öğünler',
-          subTxt: '${widget.user!.name} için',
+          subTxt: 'Detaylar',
           animation: Tween<double>(begin: 0.0, end: 1.0).animate(
               CurvedAnimation(
                   parent: widget.animationController ??

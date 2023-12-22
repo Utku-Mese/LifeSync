@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:life_sync/models/news_model.dart';
 import 'package:life_sync/utils/app_theme.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../../../utils/constants.dart';
 
 class NewsInfoScreen extends StatelessWidget {
   const NewsInfoScreen({super.key, required this.news});
@@ -41,7 +44,12 @@ class NewsInfoScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                share(
+                    news.title ?? 'Title',
+                    'Haberin devami icin linki inceleyiniz:',
+                    news.source ?? 'Source');
+              },
               child: const Icon(Icons.share),
             ),
           ),
@@ -76,7 +84,7 @@ class NewsInfoScreen extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.4 - 32,
+            top: MediaQuery.of(context).size.height * 0.4 - 12,
             left: 16,
             right: 16,
             child: Column(
@@ -105,12 +113,45 @@ class NewsInfoScreen extends StatelessWidget {
                     fontSize: 16,
                   ),
                 ),
-                const SizedBox(height: 28),
-                Text(
-                  news.contents ?? 'Description',
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
+                Container(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height * 0.45,
+                  padding: const EdgeInsets.all(6),
+                  child: ListView(
+                    children: [
+                      Text(
+                        news.contents ?? 'Description',
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                            AppTheme.nearlyDarkBlue,
+                          ),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                        ),
+                        onPressed: () async {
+                          if (!await launchUrl(Uri.parse(news.source!))) {
+                            throw Exception('Could not launch ${news.source}');
+                          }
+                        },
+                        child: Text(
+                          'Devamı için tıklayınız',
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

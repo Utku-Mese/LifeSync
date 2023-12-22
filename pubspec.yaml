@@ -46,6 +46,7 @@ dependencies:
   image_picker: ^1.0.5
   provider: ^6.1.1
   google_fonts: ^6.1.0
+  url_launcher: ^6.2.2
 
 dev_dependencies:
   flutter_test:
