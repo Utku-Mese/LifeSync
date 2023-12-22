@@ -1,6 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+// ignore: library_prefixes
+import '../../models/user_model.dart' as Umodel;
 import '../../utils/app_theme.dart';
 import '../widgets/title_view.dart';
 import 'widgets/goal_circle.dart';
@@ -12,7 +13,7 @@ class TrainingScreen extends StatefulWidget {
   const TrainingScreen({Key? key, this.animationController, required this.user})
       : super(key: key);
 
-  final User user;
+  final Umodel.User user;
   final AnimationController? animationController;
   @override
   // ignore: library_private_types_in_public_api
@@ -64,18 +65,18 @@ class _TrainingScreenState extends State<TrainingScreen>
     const int count = 5;
 
     listViews.add(
-      const Row(
+      Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           GoalCircle(
             text: 'Adım',
-            value: 6391,
+            value: widget.user.step,
             goal: 10000,
           ),
           GoalCircle(
             text: 'Yakılan\n kcal',
-            value: 264,
-            goal: 300,
+            value: widget.user.burnedCalorie,
+            goal: 250,
           ),
         ],
       ),

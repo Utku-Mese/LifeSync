@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:life_sync/utils/app_theme.dart';
-import 'package:life_sync/views/news%20and%20recipes/screens/news_screen.dart';
-import 'package:life_sync/views/news%20and%20recipes/screens/recipes_screen.dart';
+import 'package:life_sync/views/newsAndRecipes/screens/news_screen.dart';
+import 'package:life_sync/views/newsAndRecipes/screens/recipes_screen.dart';
 
 class JournalScreen extends StatefulWidget {
   const JournalScreen({super.key});

@@ -18,6 +18,9 @@ class User {
   double protein;
   double carbohydrate;
   int water;
+  int step;
+  int burnedCalorie;
+  
 
   User({
     required this.name,
@@ -35,6 +38,8 @@ class User {
     required this.protein,
     required this.carbohydrate,
     required this.water,
+    required this.step,
+    required this.burnedCalorie,
   });
 
   Map<String, dynamic> toJson() => {
@@ -53,6 +58,8 @@ class User {
         "protein": protein,
         "carbohydrate": carbohydrate,
         "water": water,
+        "step": step,
+        "burnedCalorie": burnedCalorie,
       };
 
   static Future<User?> getUserData(String uid) async {
@@ -88,6 +95,8 @@ class User {
       protein: snapshot['protein'],
       carbohydrate: snapshot['carbohydrate'],
       water: snapshot['water'],
+      step: snapshot['step'],
+      burnedCalorie: snapshot['burnedCalorie'],
     );
   }
 }

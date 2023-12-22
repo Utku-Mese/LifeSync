@@ -35,4 +35,23 @@ class BodyMeasurementController {
 
     return age;
   }
+
+  double calculateCalorieNeeds({
+    required bool isMale,
+    required double weight,
+    required double height,
+    required int age,
+  }) {
+    double bmr;
+
+    if (isMale) {
+      bmr = 88.362 + (25.397 * weight) + (8.799 * height) - (5.677 * age);
+    } else {
+      bmr = 447.593 + (20.247 * weight) + (6.098 * height) - (4.330 * age);
+    }
+
+    double calorieNeeds = bmr;
+
+    return calorieNeeds;
+  }
 }

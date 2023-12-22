@@ -90,7 +90,8 @@ class AuthController {
     double protein = 0,
     double carbohydrate = 0,
     int water = 0,
-    
+    int step = 0,
+    int burnedCalorie = 0,
   }) async {
     try {
       if (name.isNotEmpty &&
@@ -125,6 +126,8 @@ class AuthController {
           protein: protein,
           carbohydrate: carbohydrate,
           water: water,
+          step: step,
+          burnedCalorie: burnedCalorie,
         );
 
         // Firestore'a kullanıcı bilgilerini ekleyin

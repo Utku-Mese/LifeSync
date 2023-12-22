@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:life_sync/controller/body_measurement_controller.dart';
 
 import '../../../utils/app_theme.dart';
 import '../../../utils/hex_color.dart';
@@ -18,6 +19,15 @@ class DietView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BodyMeasurementController bodyMeasurementController =
+        BodyMeasurementController();
+
+    double calorieNeeds = bodyMeasurementController.calculateCalorieNeeds(
+        age: bodyMeasurementController.calculateAge(user!.birdDate),
+        isMale: user!.gender == "Erkek" ? true : false,
+        weight: user!.weight,
+        height: user!.height / 100);
+
     return AnimatedBuilder(
       animation: animationController!,
       builder: (BuildContext context, Widget? child) {
@@ -193,7 +203,7 @@ class DietView extends StatelessWidget {
                                                       const EdgeInsets.only(
                                                           left: 4, bottom: 3),
                                                   child: Text(
-                                                    '${(264 * animation!.value).toInt()}',
+                                                    '${(user!.burnedCalorie * animation!.value).toInt()}',
                                                     textAlign: TextAlign.center,
                                                     style: const TextStyle(
                                                       fontFamily:
@@ -264,7 +274,7 @@ class DietView extends StatelessWidget {
                                             CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Text(
-                                            '${(1503 * animation!.value).toInt()}',
+                                            '${(calorieNeeds * animation!.value).toInt() - (user!.calorie * animation!.value).toInt() + (user!.burnedCalorie * animation!.value).toInt()}',
                                             textAlign: TextAlign.center,
                                             style: const TextStyle(
                                               fontFamily: AppTheme.fontName,
@@ -299,8 +309,13 @@ class DietView extends StatelessWidget {
                                             HexColor("#8A98E8"),
                                             HexColor("#8A98E8")
                                           ],
-                                          angle: 140 +
-                                              (360 - 140) *
+                                          angle: (user!.calorie /
+                                                      calorieNeeds) *
+                                                  360 +
+                                              (360 -
+                                                      (user!.calorie /
+                                                              calorieNeeds) *
+                                                          360) *
                                                   (1.0 - animation!.value)),
                                       child: const SizedBox(
                                         width: 108,
@@ -382,7 +397,7 @@ class DietView extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 6),
                                   child: Text(
-                                    '12g Kaldı',
+                                    '${(user!.carbohydrate * animation!.value).toInt()}g alındı',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontFamily: AppTheme.fontName,
@@ -451,7 +466,7 @@ class DietView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 6),
                                       child: Text(
-                                        '30g Kaldı',
+                                        '${(user!.protein * animation!.value).toInt()}g alındı',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontFamily: AppTheme.fontName,
@@ -522,7 +537,7 @@ class DietView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 6),
                                       child: Text(
-                                        '10g Kaldı',
+                                        '${(user!.fat * animation!.value).toInt()}g alındı',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontFamily: AppTheme.fontName,

@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import '../../../utils/app_theme.dart';
 import '../../../utils/hex_color.dart';
 import 'wave_view.dart';
+// ignore: library_prefixes
+import 'package:life_sync/models/user_model.dart' as Umodel;
 
 class WaterView extends StatefulWidget {
   const WaterView(
-      {Key? key, this.mainScreenAnimationController, this.mainScreenAnimation})
+      {Key? key,
+      this.mainScreenAnimationController,
+      this.mainScreenAnimation,
+      required this.user})
       : super(key: key);
 
   final AnimationController? mainScreenAnimationController;
   final Animation<double>? mainScreenAnimation;
+  final Umodel.User? user;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -24,6 +30,13 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
 
   double waweCount = 0;
   double waterCount = 0;
+
+  @override
+  void initState() {
+    waterCount = widget.user!.water.toDouble();
+    waweCount = (waterCount / 175) * 5;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:life_sync/controller/auth_controller.dart';
 import 'package:life_sync/utils/app_theme.dart';
 import 'package:life_sync/views/diary/diary_screen.dart';
-import 'package:life_sync/views/news%20and%20recipes/journal_screen.dart';
+import 'package:life_sync/views/newsAndRecipes/journal_screen.dart';
 import 'package:life_sync/views/profile/profile_screen.dart';
 
 import '../utils/tab_icon_data.dart';
@@ -26,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
   AuthController authController = AuthController();
 
- Widget? tabBody;
+  Widget? tabBody;
   /* Container(
     color: AppTheme.background,
   ); */
@@ -120,6 +119,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 });
               });
             } else if (index == 1) {
+              Umodel.User? currentUser = authController.userAuth != null
+                  ? await Umodel.User.getUserData(authController.userAuth!.uid)
+                  : null;
               animationController?.reverse().then<dynamic>((data) {
                 if (!mounted) {
                   return;
@@ -127,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 setState(() {
                   tabBody = TrainingScreen(
                     animationController: animationController,
-                    user: FirebaseAuth.instance.currentUser!,
+                    user: currentUser!,
                   );
                 });
               });

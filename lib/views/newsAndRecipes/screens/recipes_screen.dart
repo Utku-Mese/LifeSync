@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:life_sync/models/news_model.dart';
-import 'package:life_sync/views/news%20and%20recipes/widgets/card_loading_widget.dart';
-import 'package:life_sync/views/news%20and%20recipes/widgets/news_card_widget.dart';
-
-import '../../../controller/news_controller.dart';
+import 'package:life_sync/controller/recipe_controller.dart';
+import 'package:life_sync/models/recipe_model.dart';
+import 'package:life_sync/views/newsAndRecipes/widgets/card_loading_widget.dart';
+import 'package:life_sync/views/newsAndRecipes/widgets/recipe_card.dart';
 import '../../diary/widgets/foodList/my_search_bar_view.dart';
 
 class RecipesScreen extends StatefulWidget {
@@ -14,7 +13,7 @@ class RecipesScreen extends StatefulWidget {
 }
 
 class _RecipesScreenState extends State<RecipesScreen> {
-  final NewsController _newsController = NewsController();
+  final RecipeController _recipeController = RecipeController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +21,8 @@ class _RecipesScreenState extends State<RecipesScreen> {
       children: [
         const MySearchBar(),
         Expanded(
-          child: FutureBuilder<List<News>>(
-            future: _newsController.fetchNews(),
+          child: FutureBuilder<List<Recipe>>(
+            future: _recipeController.fetchRecipes(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return ListView.builder(
@@ -35,14 +34,15 @@ class _RecipesScreenState extends State<RecipesScreen> {
                 );
               } else if (snapshot.hasError) {
                 return Center(
-                  child: Text('Could not retrieve data: ${snapshot.error}'),
+                  child: Text(
+                      'Veriler getirilirken bir hata oluştu!: ${snapshot.error}'),
                 );
               } else {
-                final news = snapshot.data;
+                final recipes = snapshot.data;
                 return ListView.builder(
-                  itemCount: news?.length,
+                  itemCount: recipes?.length,
                   itemBuilder: (context, index) {
-                    return NewsCard(news: news, index: index);
+                    return RecipeCard(recipes: recipes, index: index);
                   },
                   padding: const EdgeInsets.only(bottom: 85.0),
                 );

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:life_sync/models/news_model.dart';
-import 'package:life_sync/views/news%20and%20recipes/widgets/card_loading_widget.dart';
-import 'package:life_sync/views/news%20and%20recipes/widgets/news_card_widget.dart';
+import 'package:life_sync/views/newsAndRecipes/screens/news_info_screen.dart';
+import 'package:life_sync/views/newsAndRecipes/widgets/card_loading_widget.dart';
+import 'package:life_sync/views/newsAndRecipes/widgets/news_card_widget.dart';
 
 import '../../../controller/news_controller.dart';
 import '../../diary/widgets/foodList/my_search_bar_view.dart';
@@ -42,7 +43,18 @@ class _NewsScreenState extends State<NewsScreen> {
                 return ListView.builder(
                   itemCount: news?.length,
                   itemBuilder: (context, index) {
-                    return NewsCard(news: news, index: index);
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                NewsInfoScreen(news: news![index]),
+                          ),
+                        );
+                      },
+                      child: NewsCard(news: news, index: index),
+                    );
                   },
                   padding: const EdgeInsets.only(bottom: 85.0),
                 );

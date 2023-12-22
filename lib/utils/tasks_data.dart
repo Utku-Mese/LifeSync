@@ -10,9 +10,9 @@ class Task {
   bool isCompleted;
 
   static List<Task> tasks = [
-    Task(title: "Günlük kalori alımı", goal: "2600 kcal"),
+    Task(title: "Günlük kalori alımı", goal: "2344 kcal"),
     Task(title: "Yakılan kalori", goal: "250 kcal", isCompleted: true),
-    Task(title: "Günlük su tüketimi", goal: "2.5 litre"),
+    Task(title: "Günlük su tüketimi", goal: "3.5 litre"),
     Task(title: "Günlük adım sayısı", goal: "10.000 adım"),
     Task(title: "Günlük uyku süresi", goal: "8 saat", isCompleted: true),
   ];
