@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:life_sync/views/profile/widgets/profile_photo_view.dart';
 
@@ -29,16 +28,16 @@ class ProfileCardView extends StatelessWidget {
           ),
           boxShadow: <BoxShadow>[
             BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
+              color: Colors.grey.withOpacity(0.5),
               offset: const Offset(1.1, 1.1),
               blurRadius: 10.0,
             ),
-            BoxShadow(
+            /* BoxShadow(
               color: AppTheme.nearlyDarkBlue.withOpacity(0.5),
               offset: const Offset(4.0, 4.0),
               blurRadius: 20.0,
               spreadRadius: 2.0,
-            ),
+            ), */
           ],
         ),
         child: Padding(
@@ -47,19 +46,52 @@ class ProfileCardView extends StatelessWidget {
           child: Row(
             children: [
               ProfilePhotoView(
-                imagePath: user.profilePhoto, //?? 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/2048px-Windows_10_Default_Profile_Picture.svg.png',
+                imagePath: user
+                    .profilePhoto, //?? 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/2048px-Windows_10_Default_Profile_Picture.svg.png',
                 animationController: animationController!,
               ),
               const SizedBox(width: 16.0),
               Column(
                 children: [
-                  Text(
-                    user.username,
-                    style: const TextStyle(
-                      fontFamily: AppTheme.fontName,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        user.username,
+                        style: const TextStyle(
+                          fontFamily: AppTheme.fontName,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      const SizedBox(width: 8.0),
+                      const Icon(
+                        Icons.verified,
+                        color: Colors.blue,
+                        size: 20,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24.0),
+                  const Row(
+                    children: [
+                      Text(
+                        'Kupalar: ',
+                        style: TextStyle(
+                          fontFamily: AppTheme.fontName,
+                          fontWeight: FontWeight.w500,
+                          color: AppTheme.darkText,
+                        ),
+                      ),
+                      Text(
+                        '0 🏆',
+                        style: TextStyle(
+                          fontFamily: AppTheme.fontName,
+                          fontWeight: FontWeight.w500,
+                          color: AppTheme.darkText,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               )

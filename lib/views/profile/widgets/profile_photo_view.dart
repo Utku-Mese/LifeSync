@@ -42,19 +42,16 @@ class ProfilePhotoView extends StatelessWidget {
               future: loadImage(context),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  // Eğer resim yükleniyorsa, bir loading indicator göster
                   return const Center(
                     child: CircularProgressIndicator(
                       color: Colors.white,
                     ),
                   );
                 } else if (snapshot.hasError) {
-                  // Eğer bir hata oluşursa, hata mesajını göster
                   return Center(
                     child: Text('Hata oluştu: ${snapshot.error}'),
                   );
                 } else {
-                  // Resim başarıyla yüklendiyse, Image widget'ını göster
                   return snapshot.data!;
                 }
               },

@@ -54,4 +54,5 @@ class BodyMeasurementController {
 
     return calorieNeeds;
   }
+
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:life_sync/utils/app_theme.dart';
 
+// ignore: must_be_immutable
 class MySearchBar extends StatelessWidget {
    MySearchBar({
     super.key,

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:life_sync/models/food_model.dart';
 import 'package:life_sync/models/user_model.dart';
@@ -25,13 +24,11 @@ class FoodListScreen extends StatefulWidget {
 class _FoodListScreenState extends State<FoodListScreen> {
   final FoodController _foodController = FoodController();
 
-  late TextEditingController _searchController;
   late String _serchQuery;
 
   @override
   void initState() {
     super.initState();
-    _searchController = TextEditingController();
     _serchQuery = '';
   }
 

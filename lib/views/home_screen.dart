@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
   }
 
-  Future<bool> getData() async {
+  /* Future<bool> getData() async {
     //await Future<dynamic>.delayed(const Duration(milliseconds: 200));
     if (tabBody == null) {
       tabBody = DiaryScreen(
@@ -91,6 +91,23 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       return true;
     }
     return true;
+  } */
+
+  Future<bool>? _getDataFuture;
+
+  Future<bool> getData() async {
+    _getDataFuture ??=
+        Umodel.User.getUserData(authController.userAuth!.uid).then((user) {
+      tabBody = DiaryScreen(
+        animationController: animationController,
+        user: user,
+      );
+      return true;
+    }).catchError((error) {
+      print('Hata: $error');
+      return false;
+    });
+    return _getDataFuture!;
   }
 
   Widget bottomBar() {
