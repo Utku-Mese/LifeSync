@@ -211,6 +211,38 @@ class DiaryController {
       return 0;
     }
   }
+
+  Future<void> addBurnedCalorie(User user, int burnedCalorie) async {
+    try {
+      int newBurnedCalorie = user.burnedCalorie + burnedCalorie;
+
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .update({'burnedCalorie': newBurnedCalorie});
+    } catch (e) {
+      // Handle error
+      // ignore: avoid_print
+      print("Error adding to diary: $e");
+      throw Exception('Could not add to diary.');
+    }
+  }
+
+  Future<void> addStep(User user, int step) async {
+    try {
+      int newStep = user.step + step;
+
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .update({'step': newStep});
+    } catch (e) {
+      // Handle error
+      // ignore: avoid_print
+      print("Error adding to diary: $e");
+      throw Exception('Could not add to diary.');
+    }
+  }
 }
 
 

@@ -20,6 +20,7 @@ class FoodController {
       throw Exception('API request failed: ${response.statusCode}');
     }
   }
+  
 
   Future<List<Food>> fetchFoodsByType(String type) async {
     final response = await http.get(Uri.parse(

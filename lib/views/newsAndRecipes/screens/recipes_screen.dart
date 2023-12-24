@@ -19,7 +19,7 @@ class _RecipesScreenState extends State<RecipesScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const MySearchBar(),
+        MySearchBar(onSearchTextChanged: (a) {}),
         Expanded(
           child: FutureBuilder<List<Recipe>>(
             future: _recipeController.fetchRecipes(),

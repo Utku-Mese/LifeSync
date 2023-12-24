@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:life_sync/models/food_model.dart';
 import 'package:life_sync/models/user_model.dart';
@@ -23,6 +24,30 @@ class FoodListScreen extends StatefulWidget {
 
 class _FoodListScreenState extends State<FoodListScreen> {
   final FoodController _foodController = FoodController();
+
+  late TextEditingController _searchController;
+  late String _serchQuery;
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController = TextEditingController();
+    _serchQuery = '';
+  }
+
+  Future<List<Food>> _searchFoods(String query) async {
+    final allFoods = await _foodController.fetchFoods();
+
+    if (query.isEmpty) {
+      return allFoods;
+    } else {
+      final filteredFoods = allFoods
+          .where(
+              (food) => food.name!.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+      return filteredFoods;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,10 +100,17 @@ class _FoodListScreenState extends State<FoodListScreen> {
       ),
       body: Column(
         children: [
-          const MySearchBar(),
+          MySearchBar(
+            onSearchTextChanged: (query) {
+              // Arama metni değiştikçe _searchFoods fonksiyonunu çağır
+              setState(() {
+                _serchQuery = query;
+              });
+            },
+          ),
           Expanded(
             child: FutureBuilder<List<Food>>(
-              future: _foodController.fetchFoods(),
+              future: _searchFoods(_serchQuery),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());

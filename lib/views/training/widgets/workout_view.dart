@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import '../../../utils/app_theme.dart';
 import '../../../utils/hex_color.dart';
@@ -104,24 +105,40 @@ class WorkoutView extends StatelessWidget {
                             const Expanded(
                               child: SizedBox(),
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: AppTheme.nearlyWhite,
-                                shape: BoxShape.circle,
-                                boxShadow: <BoxShadow>[
-                                  BoxShadow(
-                                      color:
-                                          AppTheme.nearlyBlack.withOpacity(0.4),
-                                      offset: const Offset(8.0, 8.0),
-                                      blurRadius: 8.0),
-                                ],
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(0.0),
-                                child: Icon(
-                                  Icons.arrow_right,
-                                  color: HexColor("#6F56E8"),
-                                  size: 44,
+                            InkWell(
+                              onTap: () {
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.NO_HEADER,
+                                  animType: AnimType.BOTTOMSLIDE,
+                                  title: 'Antrenmanı Başlat',
+                                  desc:
+                                      'Antrenmanı başlatmak için hazır mısın?',
+                                  btnCancelOnPress: () {},
+                                  btnCancelText: 'Hayır',
+                                  btnOkOnPress: () {},
+                                  btnOkText: 'Evet',
+                                ).show();
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: AppTheme.nearlyWhite,
+                                  shape: BoxShape.circle,
+                                  boxShadow: <BoxShadow>[
+                                    BoxShadow(
+                                        color: AppTheme.nearlyBlack
+                                            .withOpacity(0.4),
+                                        offset: const Offset(8.0, 8.0),
+                                        blurRadius: 8.0),
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(0.0),
+                                  child: Icon(
+                                    Icons.arrow_right,
+                                    color: HexColor("#6F56E8"),
+                                    size: 44,
+                                  ),
                                 ),
                               ),
                             )

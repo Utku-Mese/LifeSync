@@ -21,7 +21,7 @@ class _NewsScreenState extends State<NewsScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const MySearchBar(),
+        MySearchBar(onSearchTextChanged: (a) {}),
         Expanded(
           child: FutureBuilder<List<News>>(
             future: _newsController.fetchNews(),

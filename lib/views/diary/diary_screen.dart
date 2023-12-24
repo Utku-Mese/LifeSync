@@ -69,6 +69,7 @@ class _DiaryScreenState extends State<DiaryScreen>
 
     listViews.add(
       TitleView(
+          user: widget.user!,
           titleTxt: 'Besin Değerleri',
           subTxt: 'Detaylar',
           animation: Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -100,6 +101,7 @@ class _DiaryScreenState extends State<DiaryScreen>
     );
     listViews.add(
       TitleView(
+          user: widget.user!,
           titleTxt: 'Öğünler',
           subTxt: 'Detaylar',
           animation: Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -133,6 +135,7 @@ class _DiaryScreenState extends State<DiaryScreen>
 
     listViews.add(
       TitleView(
+          user: widget.user!,
           titleTxt: 'Su',
           subTxt: 'Detaylar',
           animation: Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -180,6 +183,7 @@ class _DiaryScreenState extends State<DiaryScreen>
 
     listViews.add(
       TitleView(
+          user: widget.user!,
           titleTxt: 'Vücut Ölçüleri',
           subTxt: 'Düzenle',
           animation: Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -213,6 +217,7 @@ class _DiaryScreenState extends State<DiaryScreen>
 
     listViews.add(
       TitleView(
+          user: widget.user!,
           titleTxt: "Görevler",
           subTxt: "Tümünü Gör",
           animation: Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -394,7 +399,7 @@ class _DiaryScreenState extends State<DiaryScreen>
                                     ),
                                   ),
                                   Text(
-                                    '8 Kas',
+                                    '25 Aralık',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontFamily: AppTheme.fontName,

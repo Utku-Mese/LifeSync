@@ -1,4 +1,6 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:life_sync/controller/diary_controller.dart';
 
 // ignore: library_prefixes
 import '../../models/user_model.dart' as Umodel;
@@ -19,6 +21,9 @@ class TrainingScreen extends StatefulWidget {
   // ignore: library_private_types_in_public_api
   _TrainingScreenState createState() => _TrainingScreenState();
 }
+
+TextEditingController _stepController = TextEditingController();
+DiaryController diaryController = DiaryController();
 
 class _TrainingScreenState extends State<TrainingScreen>
     with TickerProviderStateMixin {
@@ -84,6 +89,7 @@ class _TrainingScreenState extends State<TrainingScreen>
 
     listViews.add(
       TitleView(
+        user: widget.user,
         titleTxt: 'Programın',
         subTxt: 'Detaylar',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
@@ -115,6 +121,8 @@ class _TrainingScreenState extends State<TrainingScreen>
 
     listViews.add(
       TitleView(
+        user: widget.user,
+        isSportView: true,
         titleTxt: 'Antrenmanlar',
         subTxt: 'Daha fazla',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
@@ -126,7 +134,73 @@ class _TrainingScreenState extends State<TrainingScreen>
     );
 
     listViews.add(
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            foregroundColor: AppTheme.white,
+            backgroundColor: AppTheme.nearlyDarkBlue,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+          ),
+          onPressed: () {
+            AwesomeDialog(
+              context: context,
+              dialogType: DialogType.noHeader,
+              title: 'Spor Bilgileri',
+              body: Column(
+                children: [
+                  Text(
+                    'Şu anki Adım Sayısı: ${widget.user.step}\n'
+                    '\nEklemek istediğiniz adım sayısını giriniz.',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12.0, vertical: 8.0),
+                    child: TextField(
+                      controller: _stepController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Adım Sayısı',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              btnCancelOnPress: () {},
+              btnOkOnPress: () {
+                diaryController.addStep(
+                  widget.user,
+                  int.parse(_stepController.text),
+                );
+                _stepController.clear();
+                AwesomeDialog(
+                  context: context,
+                  dialogType: DialogType.SUCCES,
+                  animType: AnimType.BOTTOMSLIDE,
+                  title: 'Adım Eklendi',
+                  desc: 'Adım başarıyla eklendi.',
+                  btnOkOnPress: () {},
+                ).show();
+              },
+            ).show();
+          },
+          child: const Text('Adım Ekle'),
+        ),
+      ),
+    );
+
+    listViews.add(
       SportListView(
+        user: widget.user,
         mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
             CurvedAnimation(
                 parent: widget.animationController!,
@@ -144,18 +218,23 @@ class _TrainingScreenState extends State<TrainingScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppTheme.background,
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Stack(
-          children: <Widget>[
-            getMainListViewUI(),
-            getAppBarUI(),
-            SizedBox(
-              height: MediaQuery.of(context).padding.bottom,
-            )
-          ],
+    return RefreshIndicator(
+      onRefresh: () async {
+        setState(() {});
+      },
+      child: Container(
+        color: AppTheme.background,
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: Stack(
+            children: <Widget>[
+              getMainListViewUI(),
+              getAppBarUI(),
+              SizedBox(
+                height: MediaQuery.of(context).padding.bottom,
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -274,7 +353,7 @@ class _TrainingScreenState extends State<TrainingScreen>
                                     ),
                                   ),
                                   Text(
-                                    '8 Kas',
+                                    '25 Aralık',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontFamily: AppTheme.fontName,

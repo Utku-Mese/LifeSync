@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:life_sync/utils/app_theme.dart';
 
 class MySearchBar extends StatelessWidget {
-  const MySearchBar({
+   MySearchBar({
     super.key,
+    required this.onSearchTextChanged,
   });
+
+  Function(String) onSearchTextChanged;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: TextField(
+        onChanged: onSearchTextChanged,
         decoration: InputDecoration(
           hintText: 'Ara...',
           hintStyle: const TextStyle(

@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:life_sync/models/user_model.dart';
 import 'sport_view.dart';
 
 class SportListView extends StatefulWidget {
   const SportListView(
-      {Key? key, this.mainScreenAnimationController, this.mainScreenAnimation})
+      {Key? key,
+      this.mainScreenAnimationController,
+      this.mainScreenAnimation,
+      required this.user})
       : super(key: key);
 
   final AnimationController? mainScreenAnimationController;
   final Animation<double>? mainScreenAnimation;
+  final User user;
   @override
   // ignore: library_private_types_in_public_api
   _SportListViewState createState() => _SportListViewState();
@@ -27,6 +32,13 @@ class _SportListViewState extends State<SportListView>
     'Yoga',
     'Koşu',
     'Kickbox',
+  ];
+
+  List<int> sportIndex = [
+    6,
+    0,
+    5,
+    6,
   ];
 
   @override
@@ -81,6 +93,8 @@ class _SportListViewState extends State<SportListView>
                       );
                       animationController?.forward();
                       return SportView(
+                        user: widget.user,
+                        sportIndex: sportIndex[index],
                         name: sportListNames[index],
                         imagepath: sportListImages[index],
                         animation: animation,
