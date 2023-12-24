@@ -376,8 +376,13 @@ class DietView extends StatelessWidget {
                                     child: Row(
                                       children: <Widget>[
                                         Container(
-                                          width:
-                                              ((70 / 1.2) * animation!.value),
+                                          width: (((user!.carbohydrate >= 304
+                                                      ? 303
+                                                      : user!.carbohydrate /
+                                                          304) *
+                                                  100 /
+                                                  1.2) *
+                                              animation!.value),
                                           height: 4,
                                           decoration: BoxDecoration(
                                             gradient: LinearGradient(colors: [
@@ -444,7 +449,9 @@ class DietView extends StatelessWidget {
                                         child: Row(
                                           children: <Widget>[
                                             Container(
-                                              width: ((70 / 2) *
+                                              width: (((user!.protein / 197) *
+                                                      100 /
+                                                      2) *
                                                   animationController!.value),
                                               height: 4,
                                               decoration: BoxDecoration(
@@ -515,7 +522,9 @@ class DietView extends StatelessWidget {
                                         child: Row(
                                           children: <Widget>[
                                             Container(
-                                              width: ((70 / 2.5) *
+                                              width: (((user!.fat / 93) *
+                                                      100 /
+                                                      2.5) *
                                                   animationController!.value),
                                               height: 4,
                                               decoration: BoxDecoration(

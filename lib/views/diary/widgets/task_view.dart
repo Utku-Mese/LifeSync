@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:life_sync/utils/tasks_data.dart';
+import '../../../models/user_model.dart';
 import '../../../utils/app_theme.dart';
 
 class TaskView extends StatelessWidget {
   final AnimationController? animationController;
   final Animation<double>? animation;
 
-  const TaskView({Key? key, this.animationController, this.animation})
+  final User user;
+
+  const TaskView(
+      {Key? key, this.animationController, this.animation, required this.user})
       : super(key: key);
 
   @override
@@ -52,7 +56,7 @@ class TaskView extends StatelessWidget {
                       ),
                     ),
                     const Text(
-                      "2/5",
+                      "0/4",
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 23,
@@ -96,17 +100,41 @@ class TaskView extends StatelessWidget {
                                 color: AppTheme.grey.withOpacity(0.5),
                               ),
                             ),
-                            trailing: Task.tasks[index].isCompleted
-                                ? const Icon(
-                                    Icons.check_circle,
-                                    color: AppTheme.nearlyDarkBlue,
-                                    size: 30,
-                                  )
-                                : const Icon(
-                                    Icons.check_circle_outline,
-                                    color: AppTheme.nearlyDarkBlue,
-                                    size: 30,
-                                  ),
+                            trailing: index == 2
+                                ? user.water >= 3500
+                                    ? const Icon(
+                                        Icons.check_circle,
+                                        color: AppTheme.nearlyDarkBlue,
+                                        size: 30,
+                                      )
+                                    : const Icon(
+                                        Icons.check_circle_outline,
+                                        color: AppTheme.nearlyDarkBlue,
+                                        size: 30,
+                                      )
+                                : index == 1
+                                    ? user.burnedCalorie >= 250
+                                        ? const Icon(
+                                            Icons.check_circle,
+                                            color: AppTheme.nearlyDarkBlue,
+                                            size: 30,
+                                          )
+                                        : const Icon(
+                                            Icons.check_circle_outline,
+                                            color: AppTheme.nearlyDarkBlue,
+                                            size: 30,
+                                          )
+                                    : Task.tasks[index].isCompleted
+                                        ? const Icon(
+                                            Icons.check_circle,
+                                            color: AppTheme.nearlyDarkBlue,
+                                            size: 30,
+                                          )
+                                        : const Icon(
+                                            Icons.check_circle_outline,
+                                            color: AppTheme.nearlyDarkBlue,
+                                            size: 30,
+                                          ),
                             /* trailing: Task.tasks[index].isCompleted
                                 ? Image.asset(
                                     "assets/images/check.png",
