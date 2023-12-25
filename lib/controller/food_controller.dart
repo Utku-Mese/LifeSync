@@ -11,7 +11,7 @@ class FoodController {
 
   Future<List<Food>> fetchFoods() async {
     final response =
-        await http.get(Uri.parse('http://192.168.252.229:8000/foods'));
+        await http.get(Uri.parse('http://192.168.141.229:8000/foods'));
 
     if (response.statusCode == 200) {
       final foods = parseFoods(response.body);
@@ -24,7 +24,7 @@ class FoodController {
 
   Future<List<Food>> fetchFoodsByType(String type) async {
     final response = await http.get(Uri.parse(
-        'http://192.168.1.34:8000/api/foods/$type')); //! ToDo: /api rootlari kaldirilmali
+        'http://192.168.141.229:8000/api/foods/$type')); //! ToDo: /api rootlari kaldirilmali
 
     if (response.statusCode == 200) {
       final foods = parseFoods(response.body);

@@ -10,7 +10,8 @@ class RecipeController {
 
   //Get_all
   Future<List<Recipe>> fetchRecipes() async {
-    final response =await http.get(Uri.parse('http://192.168.252.229:8000/recipes'));
+    final response =
+        await http.get(Uri.parse('http://192.168.141.229:8000/recipes'));
     if (response.statusCode == 200) {
       final recipes = parseRecipe(response.body);
       // ignore: avoid_print

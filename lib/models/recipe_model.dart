@@ -14,7 +14,7 @@ class Recipe {
       this.video});
   Recipe.fromJson(Map<String, dynamic> json) {
     title = json['title'];
-    contents = json['contents'];
+    contents = json['content'];
     recipe = json['recipe'];
     thumbnail = json['thumbnail'];
     source = json['source'];
@@ -23,7 +23,7 @@ class Recipe {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['title'] = title;
-    data['contents'] = contents;
+    data['content'] = contents;
     data['recipe'] = recipe;
     data['thumbnail'] = thumbnail;
     data['source'] = source;

@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const foodRoutes = require("./api/routes/foodRoute");
 const sportsRoutes = require("./api/routes/sportsRoute");
 const newsRoutes = require("./api/routes/newsRoute")
+const recipeRoutes = require("./api/routes/recipeRoute");
 
 // Örnek
 // const xxRoutes = require("./api/routes/xx.js");
@@ -19,5 +20,7 @@ app.use(bodyParser.json());
 
 app.use("/foods", foodRoutes);
 app.use("/sports", sportsRoutes);
-app.use("/news",newsRoutes);
+app.use("/news", newsRoutes);
+app.use("/recipes", recipeRoutes);
+
 module.exports = app;

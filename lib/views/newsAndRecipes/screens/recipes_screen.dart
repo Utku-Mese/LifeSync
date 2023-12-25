@@ -4,6 +4,7 @@ import 'package:life_sync/models/recipe_model.dart';
 import 'package:life_sync/views/newsAndRecipes/widgets/card_loading_widget.dart';
 import 'package:life_sync/views/newsAndRecipes/widgets/recipe_card.dart';
 import '../../diary/widgets/foodList/my_search_bar_view.dart';
+import 'recipe_info_screen.dart';
 
 class RecipesScreen extends StatefulWidget {
   const RecipesScreen({super.key});
@@ -42,7 +43,19 @@ class _RecipesScreenState extends State<RecipesScreen> {
                 return ListView.builder(
                   itemCount: recipes?.length,
                   itemBuilder: (context, index) {
-                    return RecipeCard(recipes: recipes, index: index);
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RecipeInfoScreen(
+                              recipe: recipes![index],
+                            ),
+                          ),
+                        );
+                      },
+                      child: RecipeCard(recipes: recipes, index: index),
+                    );
                   },
                   padding: const EdgeInsets.only(bottom: 85.0),
                 );

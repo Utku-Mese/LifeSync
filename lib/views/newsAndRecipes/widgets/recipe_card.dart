@@ -51,8 +51,6 @@ class RecipeCard extends StatelessWidget {
                       recipes?[index].title ?? 'Title',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
-                    const SizedBox(height: 8),
-                    const Text(/* recipes?[index]. ??  */ 'Date'),
                   ],
                 ),
               ),

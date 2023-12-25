@@ -13,7 +13,7 @@ class SportController {
   //Get_all
   Future<List<Sport>> fetchSports() async {
     final response =
-        await http.get(Uri.parse('http://192.168.252.229:8000/sports'));
+        await http.get(Uri.parse('http://192.168.141.229:8000/sports'));
     if (response.statusCode == 200) {
       final sports = parseSports(response.body);
       return sports;
