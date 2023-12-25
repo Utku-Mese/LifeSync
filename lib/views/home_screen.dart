@@ -6,6 +6,7 @@ import 'package:life_sync/views/newsAndRecipes/journal_screen.dart';
 import 'package:life_sync/views/profile/profile_screen.dart';
 
 import '../utils/tab_icon_data.dart';
+import 'leaderboard/leader_board_screen.dart';
 import 'training/training_screen.dart';
 import 'widgets/bottom_bar_view.dart';
 // ignore: library_prefixes
@@ -118,7 +119,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         ),
         BottomBarView(
           tabIconsList: tabIconsList,
-          addClick: () {},
+          addClick: () {Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LeaderBoardScreen(),
+                          ),
+                        );},
           changeIndex: (int index) async {
             Umodel.User? currentUser = authController.userAuth != null
                 ? await Umodel.User.getUserData(authController.userAuth!.uid)

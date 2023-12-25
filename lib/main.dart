@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: AppTheme.nearlyDarkBlue),
         textTheme: AppTheme.textTheme,
-        useMaterial3: false,
+        useMaterial3: true,
       ),
       home: const LoginScreen(),
     );

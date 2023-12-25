@@ -50,7 +50,10 @@ class NewsInfoScreen extends StatelessWidget {
                     'Haberin devami icin linki inceleyiniz:',
                     news.source ?? 'Source');
               },
-              child: const Icon(Icons.share),
+              child: const Icon(
+                Icons.share,
+                color: Colors.white,
+              ),
             ),
           ),
         ],
@@ -148,6 +151,7 @@ class NewsInfoScreen extends StatelessWidget {
                           style: GoogleFonts.poppins(
                             fontWeight: FontWeight.w500,
                             fontSize: 16,
+                            color: AppTheme.white,
                           ),
                         ),
                       ),

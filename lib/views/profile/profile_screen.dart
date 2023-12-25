@@ -408,7 +408,7 @@ class _ProfileScreenState extends State<ProfileScreen>
 
     listViews.add(
       const SizedBox(
-        height: 24,
+        height: 38,
       ),
     );
   }

@@ -56,6 +56,8 @@ class _SportViewState extends State<SportView> {
                 } else {
                   final sports = snapshot.data;
                   return Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 8.0),
                     decoration: BoxDecoration(
                       color: AppTheme.white,
                       borderRadius: const BorderRadius.only(

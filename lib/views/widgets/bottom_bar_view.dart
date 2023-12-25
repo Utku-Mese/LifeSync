@@ -1,8 +1,7 @@
 import 'dart:math' as math;
-
-import 'package:expandable_fab_lite/expandable_fab_lite.dart';
 import 'package:flutter/material.dart';
 import '../../utils/app_theme.dart';
+import '../../utils/hex_color.dart';
 import '../../utils/tab_icon_data.dart';
 
 class BottomBarView extends StatefulWidget {
@@ -118,7 +117,7 @@ class _BottomBarViewState extends State<BottomBarView>
             );
           },
         ),
-        Padding(
+        /* Padding(
           padding: EdgeInsets.only(
             bottom: MediaQuery.of(context).padding.bottom + 20,
           ),
@@ -145,8 +144,8 @@ class _BottomBarViewState extends State<BottomBarView>
               )
             ],
           ),
-        ),
-        /* Padding(
+        ), */
+        Padding(
           padding:
               EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
           child: SizedBox(
@@ -180,8 +179,7 @@ class _BottomBarViewState extends State<BottomBarView>
                         shape: BoxShape.circle,
                         boxShadow: <BoxShadow>[
                           BoxShadow(
-                              color: AppTheme.nearlyDarkBlue
-                                  .withOpacity(0.4),
+                              color: AppTheme.nearlyDarkBlue.withOpacity(0.4),
                               offset: const Offset(8.0, 16.0),
                               blurRadius: 16.0),
                         ],
@@ -193,8 +191,8 @@ class _BottomBarViewState extends State<BottomBarView>
                           highlightColor: Colors.transparent,
                           focusColor: Colors.transparent,
                           onTap: widget.addClick,
-                          child: Icon(
-                            Icons.add,
+                          child: const Icon(
+                            Icons.emoji_events,
                             color: AppTheme.white,
                             size: 32,
                           ),
@@ -206,7 +204,7 @@ class _BottomBarViewState extends State<BottomBarView>
               ),
             ),
           ),
-        ), */
+        ),
       ],
     );
   }
