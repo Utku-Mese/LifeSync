@@ -11,7 +11,7 @@ class FoodController {
 
   Future<List<Food>> fetchFoods() async {
     final response =
-        await http.get(Uri.parse('http://192.168.141.229:8000/foods'));
+        await http.get(Uri.parse('http://192.168.236.229:8000/foods'));
 
     if (response.statusCode == 200) {
       final foods = parseFoods(response.body);

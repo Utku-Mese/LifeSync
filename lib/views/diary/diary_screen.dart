@@ -24,6 +24,9 @@ class DiaryScreen extends StatefulWidget {
 class _DiaryScreenState extends State<DiaryScreen>
     with TickerProviderStateMixin {
   Animation<double>? topBarAnimation;
+  
+
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   List<Widget> listViews = <Widget>[];
   final ScrollController scrollController = ScrollController();
@@ -262,6 +265,7 @@ class _DiaryScreenState extends State<DiaryScreen>
     return Container(
       color: AppTheme.background,
       child: Scaffold(
+        key: _scaffoldKey,
         backgroundColor: Colors.transparent,
         body: Stack(
           children: <Widget>[
@@ -289,6 +293,9 @@ class _DiaryScreenState extends State<DiaryScreen>
                 listViews = <Widget>[];
                 addAllListData();
               });
+
+              _scaffoldKey.currentState?.dispose();
+              _scaffoldKey = GlobalKey<ScaffoldState>();
             },
             child: ListView.builder(
               controller: scrollController,

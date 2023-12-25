@@ -29,6 +29,8 @@ class _TrainingScreenState extends State<TrainingScreen>
     with TickerProviderStateMixin {
   Animation<double>? topBarAnimation;
 
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   List<Widget> listViews = <Widget>[];
   final ScrollController scrollController = ScrollController();
   double topBarOpacity = 0.0;
@@ -220,11 +222,17 @@ class _TrainingScreenState extends State<TrainingScreen>
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {
-        setState(() {});
+        setState(() {
+          listViews = <Widget>[];
+          addAllListData();
+          _scaffoldKey.currentState?.dispose();
+          _scaffoldKey = GlobalKey<ScaffoldState>();
+        });
       },
       child: Container(
         color: AppTheme.background,
         child: Scaffold(
+          key: _scaffoldKey,
           backgroundColor: Colors.transparent,
           body: Stack(
             children: <Widget>[

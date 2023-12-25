@@ -60,8 +60,8 @@ class _FormScreenState extends State<FormScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
-              onPressed: () {
-                authController.createUserWithEmailAndPassword(
+              onPressed: () async {
+                await authController.createUserWithEmailAndPassword(
                   email: widget.email,
                   password: widget.password,
                   name: _nameController.text,
